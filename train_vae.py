@@ -2,6 +2,9 @@ import math
 from math import sqrt
 import argparse
 from pathlib import Path
+import os
+os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 
 # torch
 
@@ -20,15 +23,17 @@ from torchvision.utils import make_grid, save_image
 
 from dalle_pytorch import distributed_utils
 from dalle_pytorch import DiscreteVAE
-
+import ecg_plot
+torch.manual_seed(0)
+torch.set_num_threads(16)
 # argument parsing
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument('--image_folder', type = str, required = True,
-                    help='path to your folder of images for learning the discrete VAE and its codebook')
+# parser.add_argument('--image_folder', type = str, required = True,
+#                     help='path to your folder of images for learning the discrete VAE and its codebook')
 
-parser.add_argument('--image_size', type = int, required = False, default = 128,
+parser.add_argument('--image_size', type = int, required = False, default = 5000,
                     help='image size')
 
 parser = distributed_utils.wrap_arg_parser(parser)
@@ -36,7 +41,7 @@ parser = distributed_utils.wrap_arg_parser(parser)
 
 train_group = parser.add_argument_group('Training settings')
 
-train_group.add_argument('--epochs', type = int, default = 20, help = 'number of epochs')
+train_group.add_argument('--epochs', type = int, default = 1000, help = 'number of epochs')
 
 train_group.add_argument('--batch_size', type = int, default = 8, help = 'batch size')
 
@@ -50,13 +55,13 @@ train_group.add_argument('--temp_min', type = float, default = 0.5, help = 'mini
 
 train_group.add_argument('--anneal_rate', type = float, default = 1e-6, help = 'temperature annealing rate')
 
-train_group.add_argument('--num_images_save', type = int, default = 4, help = 'number of images to save')
+train_group.add_argument('--num_images_save', type = int, default = 1, help = 'number of images to save')
 
 model_group = parser.add_argument_group('Model settings')
 
-model_group.add_argument('--num_tokens', type = int, default = 8192, help = 'number of image tokens')
+model_group.add_argument('--num_tokens', type = int, default = 512, help = 'number of ECG tokens')
 
-model_group.add_argument('--num_layers', type = int, default = 3, help = 'number of layers (should be 3 or above)')
+model_group.add_argument('--num_layers', type = int, default = 4, help = 'number of layers (should be 3 or above)')
 
 model_group.add_argument('--num_resnet_blocks', type = int, default = 2, help = 'number of residual net blocks')
 
@@ -73,7 +78,7 @@ args = parser.parse_args()
 # constants
 
 IMAGE_SIZE = args.image_size
-IMAGE_PATH = args.image_folder
+# IMAGE_PATH = args.image_folder
 
 EPOCHS = args.epochs
 BATCH_SIZE = args.batch_size
@@ -104,24 +109,82 @@ using_deepspeed = \
 
 # data
 
-ds = ImageFolder(
-    IMAGE_PATH,
-    T.Compose([
-        T.Lambda(lambda img: img.convert('RGB') if img.mode != 'RGB' else img),
-        T.Resize(IMAGE_SIZE),
-        T.CenterCrop(IMAGE_SIZE),
-        T.ToTensor()
-    ])
-)
+# ds = ImageFolder(
+#     IMAGE_PATH,
+#     T.Compose([
+#         T.Lambda(lambda img: img.convert('RGB') if img.mode != 'RGB' else img),
+#         T.Resize(IMAGE_SIZE),
+#         T.CenterCrop(IMAGE_SIZE),
+#         T.ToTensor()
+#     ])
+# )
+#
+# if distributed_utils.using_backend(distributed_utils.HorovodBackend):
+#     data_sampler = torch.utils.data.distributed.DistributedSampler(
+#         ds, num_replicas=distr_backend.get_world_size(),
+#         rank=distr_backend.get_rank())
+# else:
+#     data_sampler = None
 
-if distributed_utils.using_backend(distributed_utils.HorovodBackend):
-    data_sampler = torch.utils.data.distributed.DistributedSampler(
-        ds, num_replicas=distr_backend.get_world_size(),
-        rank=distr_backend.get_rank())
-else:
-    data_sampler = None
+###Added code####
 
-dl = DataLoader(ds, BATCH_SIZE, shuffle = not data_sampler, sampler=data_sampler)
+new_original_files = torch.load("/home/hschung/ecg/ECG_Training/new_original_files_12.pt")
+
+
+class ECGDataset(torch.utils.data.Dataset):
+    def __init__(self):
+        self.data = new_original_files
+
+    def __getitem__(self, index):
+        return self.data[index]
+
+    def __len__(self):
+        return len(self.data)
+
+
+dataset = ECGDataset()
+
+def normalize(dataset):
+    channels_sum, channels_squared_sum = 0, 0
+    for data in dataset:
+        channels_sum += torch.mean(data, dim=1)
+        channels_squared_sum += torch.mean(data**2, dim=1)
+
+    mean = channels_sum / len(dataset)
+    std = (channels_squared_sum / len(dataset) - mean**2)** 0.5
+
+    mean = mean.unsqueeze(1)
+    std = std.unsqueeze(1)
+
+    normalized_data = []
+    for data in dataset:
+        data = (data - mean) / std
+        normalized_data.append(data)
+    return normalized_data
+
+data = dataset.data
+#normalized_data = normalize(dataset.data)
+
+train_size = int(0.8 * len(dataset))
+val_size = int(0.1 * train_size)
+test_size = int(len(dataset) - (train_size + val_size))
+
+training_data, validation_data, test_data = torch.utils.data.random_split(data, [train_size, val_size, test_size])
+
+training_loader = DataLoader(dataset=training_data, batch_size=256, shuffle=True)
+validation_loader = DataLoader(dataset=validation_data, batch_size=args.batch_size, shuffle=False)
+Test_loader = DataLoader(dataset=test_data, batch_size=args.batch_size, shuffle=False)
+
+dl = training_loader
+
+###End added code###
+
+
+
+# dl = DataLoader(ds, BATCH_SIZE, shuffle = not data_sampler, sampler=data_sampler)
+
+
+
 
 vae_params = dict(
     image_size = IMAGE_SIZE,
@@ -141,9 +204,9 @@ if not using_deepspeed:
     vae = vae.cuda()
 
 
-assert len(ds) > 0, 'folder does not contain any images'
-if distr_backend.is_root_worker():
-    print(f'{len(ds)} images found for training')
+# assert len(ds) > 0, 'folder does not contain any images'
+# if distr_backend.is_root_worker():
+#     print(f'{len(ds)} ECGs found for training')
 
 # optimizer
 
@@ -221,11 +284,11 @@ global_step = 0
 temp = STARTING_TEMP
 
 for epoch in range(EPOCHS):
-    for i, (images, _) in enumerate(distr_dl):
-        images = images.cuda()
+    for i, data in enumerate(distr_dl):
+        data = data.cuda()
 
         loss, recons = distr_vae(
-            images,
+            data,
             return_loss = True,
             return_recons = True,
             temp = temp
@@ -247,24 +310,35 @@ for epoch in range(EPOCHS):
                 k = NUM_IMAGES_SAVE
 
                 with torch.no_grad():
-                    codes = vae.get_codebook_indices(images[:k])
+                    codes = vae.get_codebook_indices(data[:k])
                     hard_recons = vae.decode(codes)
 
-                images, recons = map(lambda t: t[:k], (images, recons))
-                images, recons, hard_recons, codes = map(lambda t: t.detach().cpu(), (images, recons, hard_recons, codes))
-                images, recons, hard_recons = map(lambda t: make_grid(t.float(), nrow = int(sqrt(k)), normalize = True, range = (-1, 1)), (images, recons, hard_recons))
+                data, recons = map(lambda t: t[:k], (data, recons))
+                # data, recons, hard_recons, codes = map(lambda t: t.detach().cpu(), (data, recons, hard_recons, codes))
+                # data, recons, hard_recons = map(lambda t: make_grid(t.float(), nrow = int(sqrt(k)), normalize = False, range = (-1, 1)), (data, recons, hard_recons))
+                data = data.squeeze(0)
+                recons = recons.squeeze(0)
+                ###ecg_plots###
+                ecg_plot.plot(data.detach().cpu().numpy(), sample_rate=500, title = "Original ECG")
+                ecg_plot.save_as_png("Original_ECG")
+                ecg_plot.plot(recons.detach().cpu().numpy(), sample_rate=500, title = "Reconstructed ECG")
+                ecg_plot.save_as_png("Reconstructed_ECG")
+                ecg_plot.plot(hard_recons.detach().cpu().numpy(), sample_rate=500, title="Hard Reconstructed ECG")
+                ecg_plot.save_as_png("Hard_Reconstructed_ECG")
+
+
 
                 logs = {
                     **logs,
-                    'sample images':        wandb.Image(images, caption = 'original images'),
-                    'reconstructions':      wandb.Image(recons, caption = 'reconstructions'),
-                    'hard reconstructions': wandb.Image(hard_recons, caption = 'hard reconstructions'),
-                    'codebook_indices':     wandb.Histogram(codes),
+                    'sample images':        wandb.log({"Original ECG": wandb.Image("Original_ECG.png")}),
+                    'reconstructions':      wandb.log({"Reconstructed ECG": wandb.Image("Reconstructed_ECG.png")}),
+                    'hard reconstructions': wandb.log({"Hard Reconstructed ECG": wandb.Image("Hard_Reconstructed_ECG.png")}),
+                    'codebook_indices':     wandb.Histogram(codes.cpu()),
                     'temperature':          temp
                 }
 
-                wandb.save('./vae.pt')
-            save_model(f'./vae.pt')
+                wandb.save('./vae/vae.pt')
+            save_model(f'./vae/vae.pt')
 
             # temperature anneal
 
@@ -299,17 +373,17 @@ for epoch in range(EPOCHS):
         # save trained model to wandb as an artifact every epoch's end
 
         model_artifact = wandb.Artifact('trained-vae', type = 'model', metadata = dict(model_config))
-        model_artifact.add_file('vae.pt')
+        model_artifact.add_file('./vae/vae.pt')
         run.log_artifact(model_artifact)
 
 if distr_backend.is_root_worker():
     # save final vae and cleanup
 
-    save_model('./vae-final.pt')
-    wandb.save('./vae-final.pt')
+    save_model('./vae/vae-final.pt')
+    wandb.save('./vae/vae-final.pt')
 
     model_artifact = wandb.Artifact('trained-vae', type = 'model', metadata = dict(model_config))
-    model_artifact.add_file('vae-final.pt')
+    model_artifact.add_file('./vae/vae-final.pt')
     run.log_artifact(model_artifact)
 
     wandb.finish()

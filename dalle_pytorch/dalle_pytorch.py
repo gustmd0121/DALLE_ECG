@@ -3,6 +3,9 @@ import torch
 from torch import nn, einsum
 import torch.nn.functional as F
 import numpy as np
+import os
+os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+os.environ["CUDA_VISIBLE_DEVICES"] = "2, 3"
 
 from axial_positional_embedding import AxialPositionalEmbedding
 from einops import rearrange
@@ -61,11 +64,11 @@ class ResBlock(nn.Module):
     def __init__(self, chan):
         super().__init__()
         self.net = nn.Sequential(
-            nn.Conv2d(chan, chan, 3, padding = 1),
+            nn.Conv1d(chan, chan, 3, padding = 1),
             nn.ReLU(),
-            nn.Conv2d(chan, chan, 3, padding = 1),
+            nn.Conv1d(chan, chan, 3, padding = 1),
             nn.ReLU(),
-            nn.Conv2d(chan, chan, 1)
+            nn.Conv1d(chan, chan, 1)
         )
 
     def forward(self, x):
@@ -74,13 +77,13 @@ class ResBlock(nn.Module):
 class DiscreteVAE(nn.Module):
     def __init__(
         self,
-        image_size = 256,
+        image_size = 5000,
         num_tokens = 512,
         codebook_dim = 512,
-        num_layers = 3,
+        num_layers = 4,
         num_resnet_blocks = 0,
         hidden_dim = 64,
-        channels = 3,
+        channels = 12,
         smooth_l1_loss = False,
         temperature = 0.9,
         straight_through = False,
@@ -88,7 +91,7 @@ class DiscreteVAE(nn.Module):
         normalization = ((0.5,) * 3, (0.5,) * 3)
     ):
         super().__init__()
-        assert log2(image_size).is_integer(), 'image size must be a power of 2'
+        # assert log2(image_size).is_integer(), 'image size must be a power of 2'
         assert num_layers >= 1, 'number of layers must be greater than or equal to 1'
         has_resblocks = num_resnet_blocks > 0
 
@@ -113,20 +116,25 @@ class DiscreteVAE(nn.Module):
 
         enc_layers = []
         dec_layers = []
-
+        count = 0
         for (enc_in, enc_out), (dec_in, dec_out) in zip(enc_chans_io, dec_chans_io):
-            enc_layers.append(nn.Sequential(nn.Conv2d(enc_in, enc_out, 4, stride = 2, padding = 1), nn.ReLU()))
-            dec_layers.append(nn.Sequential(nn.ConvTranspose2d(dec_in, dec_out, 4, stride = 2, padding = 1), nn.ReLU()))
-
+            enc_layers.append(nn.Sequential(nn.Conv1d(enc_in, enc_out, 4, stride = 2, padding = 1), nn.ReLU()))
+            if count == 0:
+                dec_layers.append(nn.Sequential(nn.ConvTranspose1d(dec_in, dec_out, 4, stride=2, padding=1, output_padding=1), nn.ReLU()))
+                count += 1
+                continue
+            else:
+                dec_layers.append(nn.Sequential(nn.ConvTranspose1d(dec_in, dec_out, 4, stride = 2, padding = 1), nn.ReLU()))
+            count += 1
         for _ in range(num_resnet_blocks):
             dec_layers.insert(0, ResBlock(dec_chans[1]))
             enc_layers.append(ResBlock(enc_chans[-1]))
 
         if num_resnet_blocks > 0:
-            dec_layers.insert(0, nn.Conv2d(codebook_dim, dec_chans[1], 1))
+            dec_layers.insert(0, nn.Conv1d(codebook_dim, dec_chans[1], 1))
 
-        enc_layers.append(nn.Conv2d(enc_chans[-1], num_tokens, 1))
-        dec_layers.append(nn.Conv2d(dec_chans[-1], channels, 1))
+        enc_layers.append(nn.Conv1d(enc_chans[-1], num_tokens, 1))
+        dec_layers.append(nn.Conv1d(dec_chans[-1], channels, 1))
 
         self.encoder = nn.Sequential(*enc_layers)
         self.decoder = nn.Sequential(*dec_layers)
@@ -176,31 +184,31 @@ class DiscreteVAE(nn.Module):
         b, n, d = image_embeds.shape
         h = w = int(sqrt(n))
 
-        image_embeds = rearrange(image_embeds, 'b (h w) d -> b d h w', h = h, w = w)
+        image_embeds = rearrange(image_embeds, 'b t d -> b d t')
         images = self.decoder(image_embeds)
         return images
 
     def forward(
         self,
-        img,
+        ecg,
         return_loss = False,
         return_recons = False,
         return_logits = False,
         temp = None
     ):
-        device, num_tokens, image_size, kl_div_loss_weight = img.device, self.num_tokens, self.image_size, self.kl_div_loss_weight
-        assert img.shape[-1] == image_size and img.shape[-2] == image_size, f'input must have the correct image size {image_size}'
+        device, num_tokens, image_size, kl_div_loss_weight = ecg.device, self.num_tokens, self.image_size, self.kl_div_loss_weight
+        # assert ecg.shape[-1] == image_size and ecg.shape[-2] == image_size, f'input must have the correct image size {image_size}'
 
-        img = self.norm(img)
+        # ecg = self.norm(ecg) #8, 3, 128, 128
 
-        logits = self.encoder(img)
+        logits = self.encoder(ecg) #256, 512, 312
 
         if return_logits:
             return logits # return logits for getting hard image indices for DALL-E training
 
         temp = default(temp, self.temperature)
         soft_one_hot = F.gumbel_softmax(logits, tau = temp, dim = 1, hard = self.straight_through)
-        sampled = einsum('b n h w, n d -> b d h w', soft_one_hot, self.codebook.weight)
+        sampled = einsum('b n t, n d -> b d t', soft_one_hot, self.codebook.weight)
         out = self.decoder(sampled)
 
         if not return_loss:
@@ -208,11 +216,11 @@ class DiscreteVAE(nn.Module):
 
         # reconstruction loss
 
-        recon_loss = self.loss_fn(img, out)
+        recon_loss = self.loss_fn(ecg, out)
 
         # kl divergence
 
-        logits = rearrange(logits, 'b n h w -> b (h w) n')
+        logits = rearrange(logits, 'b n t -> b t n') #[8, 256, 8192] [256, 312, 512]
         log_qy = F.log_softmax(logits, dim = -1)
         log_uniform = torch.log(torch.tensor([1. / num_tokens], device = device))
         kl_div = F.kl_div(log_uniform, log_qy, None, None, 'batchmean', log_target = True)

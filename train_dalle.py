@@ -3,6 +3,8 @@ from pathlib import Path
 import time
 from glob import glob
 import os
+os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+os.environ["CUDA_VISIBLE_DEVICES"] = "2, 3"
 import shutil
 
 import torch
