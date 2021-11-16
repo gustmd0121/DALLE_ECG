@@ -2,9 +2,10 @@ from pathlib import Path
 from random import randint, choice
 
 import PIL
-
+import torch
 from torch.utils.data import Dataset
 from torchvision import transforms as T
+from scipy.io import loadmat
 
 
 class TextImageDataset(Dataset):
@@ -27,8 +28,7 @@ class TextImageDataset(Dataset):
 
         text_files = [*path.glob('**/*.txt')]
         image_files = [
-            *path.glob('**/*.png'), *path.glob('**/*.jpg'),
-            *path.glob('**/*.jpeg'), *path.glob('**/*.bmp')
+            *path.glob('**/*.mat')
         ]
 
         text_files = {text_file.stem: text_file for text_file in text_files}
@@ -88,12 +88,16 @@ class TextImageDataset(Dataset):
             self.text_len,
             truncate_text=self.truncate_captions
         ).squeeze(0)
-        try:
-            image_tensor = self.image_transform(PIL.Image.open(image_file))
-        except (PIL.UnidentifiedImageError, OSError) as corrupt_image_exceptions:
-            print(f"An exception occurred trying to load file {image_file}.")
-            print(f"Skipping index {ind}")
-            return self.skip_sample(ind)
+
+        image_tensor = loadmat(image_file)
+        # image_tensor['val'] = float(image_tensor['val'])
+        image_tensor = torch.from_numpy(image_tensor['val'])
+        image_tensor = image_tensor.float()
+        data_mean = torch.mean(image_tensor, 1, keepdim=True)
+        data_std = torch.std(image_tensor, 1, keepdim=True)
+        image_tensor -= data_mean
+        image_tensor /= data_std
+
 
         # Success
         return tokenized_text, image_tensor

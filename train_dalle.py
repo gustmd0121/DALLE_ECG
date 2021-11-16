@@ -4,7 +4,7 @@ import time
 from glob import glob
 import os
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-os.environ["CUDA_VISIBLE_DEVICES"] = "2, 3"
+os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 import shutil
 
 import torch
@@ -24,6 +24,7 @@ import webdataset as wds
 from torchvision import transforms as T
 from PIL import Image
 from io import BytesIO
+
 
 
 # argument parsing
@@ -94,13 +95,13 @@ train_group = parser.add_argument_group('Training settings')
 
 train_group.add_argument('--flops_profiler', dest = 'flops_profiler', action='store_true', help = 'Exits after printing detailed flops/runtime analysis of forward/backward')
 
-train_group.add_argument('--epochs', default = 20, type = int, help = 'Number of epochs')
+train_group.add_argument('--epochs', default = 1000, type = int, help = 'Number of epochs')
 
 train_group.add_argument('--save_every_n_steps', default = 1000, type = int, help = 'Save a checkpoint every n steps')
 
 train_group.add_argument('--keep_n_checkpoints', default = None, type = int, help = '(Careful) Deletes old deepspeed checkpoints if there are more than n')
 
-train_group.add_argument('--batch_size', default = 4, type = int, help = 'Batch size')
+train_group.add_argument('--batch_size', default = 64, type = int, help = 'Batch size')
 
 train_group.add_argument('--ga_steps', default = 1, type = int, help = 'Number of steps to accumulate gradients across per each iteration. DeepSpeed only.')
 
@@ -451,12 +452,12 @@ if distr_backend.is_root_worker():
         dim_head=DIM_HEAD
     )
 
-    run = wandb.init(
-        project=args.wandb_name,
-        entity=args.wandb_entity,
-        resume=False,
-        config=model_config,
-    )
+    # run = wandb.init(
+    #     project=args.wandb_name,
+    #     entity=args.wandb_entity,
+    #     resume=False,
+    #     config=model_config,
+    # )
 
 # distribute
 
@@ -571,8 +572,8 @@ for epoch in range(resume_epoch, EPOCHS):
             t = time.time()
         if args.fp16:
             images = images.half()
+        images = images.type(torch.LongTensor)
         text, images = map(lambda t: t.cuda(), (text, images))
-
         loss = distr_dalle(text, images, return_loss=True)
 
         if using_deepspeed:
