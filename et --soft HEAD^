@@ -1,0 +1,2173 @@
+[33mcommit e44a2e8c5960eaff6b978965282248cd5eb34eef[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: gustmd0121 <gustmd0121@gmail.com>
+Date:   Wed Nov 17 11:13:21 2021 +0000
+
+    dalle_update
+
+[33mcommit cb56f37b533a35a37d348c5a8929c20caaf471a7[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: gustmd0121 <gustmd0121@gmail.com>
+Date:   Tue Nov 16 05:22:48 2021 +0000
+
+    DALLE_ECG
+
+[33mcommit 9fa9c550345140a9cda652325a06b50752f5b693[m
+Author: gustmd0121 <gustmd0121@gmail.com>
+Date:   Sun Nov 14 17:20:37 2021 +0000
+
+    message
+
+[33mcommit ae4d88a5b2748f05d717ce91d6cbdcaba499eea4[m[33m ([m[1;33mtag: 1.1.4[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Thu Nov 11 22:01:26 2021 -0800
+
+    1.1.4
+
+[33mcommit a34d5d9dc92ba596be0f6bd1cc55626e2f28a0c9[m[33m ([m[1;33mtag: 1.1.2[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Mon Nov 8 17:21:18 2021 -0800
+
+    1.1.2
+
+[33mcommit e31bbfc83efd2131ce06933432557ec7811bd68b[m
+Author: Alexander Borzunov <hxrussia@gmail.com>
+Date:   Tue Nov 9 04:20:52 2021 +0300
+
+    Fix rotary embeddings (#383)
+
+[33mcommit 04b6feb7d338a059e6641343849edfe0ccbfe327[m[33m ([m[1;33mtag: 1.1.1[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Sat Nov 6 12:16:45 2021 -0700
+
+    add additional stabilization technique, looking at ruDALL-E results
+
+[33mcommit 1dcf6c324578f80b76133f0db61d8c6c5d72ba68[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Wed Nov 3 17:24:33 2021 -0700
+
+    date
+
+[33mcommit 8c370c8f8c790495b6ed61580291d5c8fcd77d7f[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Wed Nov 3 17:23:21 2021 -0700
+
+    ruDALL-E link
+
+[33mcommit e4e101f48badcc219696d1945a5004e060a71d7c[m[33m ([m[1;33mtag: 1.1.0[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Tue Oct 19 13:51:03 2021 -0700
+
+    add sandwich norm, from the coqview paper, for stabilizing training even more, hidden behind feature flag
+
+[33mcommit 15d2f3593eb4812edd53b24753b96c3208fc4b71[m[33m ([m[1;33mtag: 1.0.8[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Wed Sep 29 15:33:59 2021 -0700
+
+    no rotary embedding for transformers within CLIP model
+
+[33mcommit 3df569d3921ef46de888708e0cb51bdd67e85a4e[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Wed Sep 29 15:30:58 2021 -0700
+
+    reorder conditional for determining VAE type in generate.py
+
+[33mcommit 7c0a28ba5cb30bc92520316c1dfe0e0975c22cf1[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Sun Sep 26 22:15:50 2021 +0000
+
+    Do not try to wrap WebDatasets with DeepSpeed (#367)
+    
+    Wrapping causes errors due to PyTorch's
+    `torch.data.utils.DistributedSampler` not being applicable to
+    `torch.data.utils.IterableDataset`s (which WebDatasets are
+    implementing).
+    
+    Fix #359.
+
+[33mcommit 9a2a1b651a6c734b2f5af781e6a3dce6a775480a[m
+Author: Clay M <claymullis@fastmail.com>
+Date:   Thu Sep 16 18:25:04 2021 -0500
+
+    (webdataset) fix KeyError for C@H (#363)
+
+[33mcommit 499b4c95b706f30dcf154bc952bb4ed902511306[m
+Author: robvanvolt <65366998+robvanvolt@users.noreply.github.com>
+Date:   Mon Sep 13 17:10:48 2021 +0200
+
+    Quickfix WDS2 (#358)
+    
+    Forgot to remove length as an argument to wds.WebDataset(), sorry!
+
+[33mcommit 55f21ad7eb8d4844b4cabe295f494d856c947f1e[m
+Author: robvanvolt <65366998+robvanvolt@users.noreply.github.com>
+Date:   Mon Sep 13 03:05:46 2021 +0200
+
+    Quickfix WDS (#357)
+    
+    Deprecated length attribute got removed in the latest WebDataset version, so only check the length of the dataset if not using WDS.
+    Thanks to ARKseal for pointing out to that bug.
+
+[33mcommit eacb7203e123ea8f26299b3b4b4788febe14db74[m[33m ([m[1;33mtag: 1.0.7[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Wed Sep 1 16:55:44 2021 -0700
+
+    enforce latest einops
+
+[33mcommit 128c8b9cf6d63a79c362c51f67b7848762eea196[m[33m ([m[1;33mtag: 1.0.6[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Mon Aug 23 14:10:13 2021 -0700
+
+    default shifting tokens to false
+
+[33mcommit 1187ad025d02304fd647e88823fc1b8005b60598[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Thu Aug 19 20:37:32 2021 -0700
+
+    readme
+
+[33mcommit d355100061911b13e1f1c22de8c2b5deb44e65f8[m[33m ([m[1;33mtag: 1.0.5[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Tue Aug 17 08:28:17 2021 -0700
+
+    bump
+
+[33mcommit 63effa53fceb1c66c1f3b3f98d6435c2d89e74b9[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Tue Aug 17 08:20:39 2021 -0700
+
+    default both rotary and shift tokens to be on after seeing results
+
+[33mcommit a7217807d8618adf0ca4adc37be3ef4d8bd2a1a9[m[33m ([m[1;33mtag: 1.0.4[m[33m)[m
+Author: robvanvolt <65366998+robvanvolt@users.noreply.github.com>
+Date:   Tue Aug 17 16:33:19 2021 +0200
+
+    Update discord link (permanent now). (#351)
+
+[33mcommit 153e6fe86f93bbc049cf4091c85ee785c1d1724b[m
+Author: Romain Beaumont <r.beaumont@criteo.com>
+Date:   Tue Aug 17 02:02:06 2021 +0200
+
+    fix rotary and shift options in train_dalle (#349)
+
+[33mcommit f676ac758900e2f84303fc4d888e1dcda255de29[m[33m ([m[1;33mtag: 1.0.3[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Mon Aug 16 16:59:08 2021 -0700
+
+    place the image tokens far away relative to the text tokens
+
+[33mcommit 24d411f5f020b59d5dbe14b0c7690b402d56b446[m
+Author: Romain Beaumont <r.beaumont@criteo.com>
+Date:   Mon Aug 16 23:09:04 2021 +0200
+
+    add rotary emb option to train dalle (#348)
+
+[33mcommit 208d12e3286e357277b5a14124b8fef3e8d6ead0[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Mon Aug 16 12:38:15 2021 -0700
+
+    cite rotary embedding authors
+
+[33mcommit 856c55627dfad0debbd76e64255ecc18824bd352[m[33m ([m[1;33mtag: 1.0.2[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Mon Aug 16 11:48:59 2021 -0700
+
+    add rotary positional embedding to dall-e
+
+[33mcommit c0f2eb0b3f211e7ba2acd28173f67d081f74d6b8[m[33m ([m[1;33mtag: 1.0.1[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Mon Aug 16 08:59:14 2021 -0700
+
+    default token shifting to false for now
+
+[33mcommit b45a9315694aea9a3fd5c4f393cd562be2b6c7e4[m
+Author: Romain Beaumont <r.beaumont@criteo.com>
+Date:   Mon Aug 16 17:55:59 2021 +0200
+
+    Make shift tokens a parameter in train_dalle (#347)
+    
+    default to False to preserve back compatibility with previously trained models
+
+[33mcommit 5da0be967fe890f635a49d6f83abf3c68667e192[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Mon Aug 16 07:29:38 2021 -0700
+
+    cite
+
+[33mcommit 0c2c1f79d960d23352acc464bac272ba1ae9aa7b[m[33m ([m[1;33mtag: 1.0.0[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Sun Aug 15 19:43:52 2021 -0700
+
+    add token shift feature, which should greatly improve convergence. bump to 1.0
+
+[33mcommit 8fb3fc553ca37c468351edafef67560454ac08b7[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Tue Aug 10 12:28:57 2021 -0700
+
+    thanks
+
+[33mcommit 961bba948124a135120db477ef9a55329a7feac8[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Thu Jul 29 09:27:08 2021 -0700
+
+    readme
+
+[33mcommit d1f4314033d1282428f84b73e7fa98af0f46c00f[m[33m ([m[1;33mtag: 0.14.3[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Wed Jul 14 19:24:44 2021 -0700
+
+    0.14.3
+
+[33mcommit 9d3e25ab86a2a19151cf9b5c340224deb05ec4df[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Thu Jul 15 02:24:18 2021 +0000
+
+    Fix OpenAI VAE discontiguity (#338)
+    
+    Fix #330
+
+[33mcommit 2f1d10e04e537da3e7c9fd6a4057596617823656[m[33m ([m[1;33mtag: 0.14.2[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Thu Jul 8 11:58:03 2021 -0700
+
+    0.14.2
+
+[33mcommit fd931e16925bc1844277be83b96c19d13ab6f196[m
+Author: jules-samaran <42657542+jules-samaran@users.noreply.github.com>
+Date:   Thu Jul 8 20:57:48 2021 +0200
+
+    Generate text with DALLE (#327)
+    
+    * use dalle as a language model
+    
+    * WIP: separate function for text gen
+    
+    * fix text generation
+    
+    * make tokenize use a set object for tokens to ignore
+    
+    * cleanup generate text and handle better provided text
+    
+    Co-authored-by: Romain Beaumont <romain.rom1@gmail.com>
+    Co-authored-by: jd.samaran <jd.samaran@mesos-slave079-am6.central.criteo.prod>
+    Co-authored-by: jd.samaran <jd.samaran@mesos-slave150-am6.central.criteo.prod>
+    Co-authored-by: jd.samaran <jd.samaran@mesos-slave080-am6.central.criteo.prod>
+
+[33mcommit 01e402e4001d8075004c85b07b12429b8a01e822[m[33m ([m[1;33mtag: 0.14.1[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Thu Jul 1 08:47:24 2021 -0700
+
+    0.14.1
+
+[33mcommit 2827c2a1f9247639030a3defd7626c7ad73e0d50[m
+Author: Romain Beaumont <r.beaumont@criteo.com>
+Date:   Thu Jul 1 17:46:56 2021 +0200
+
+    Fix for VQGAN after update of taming transformer dependency (#329)
+    
+    in the v3 of their paper, taming transformers authors changed the implementation of the VectorQuantizer
+    see https://github.com/CompVis/taming-transformers/commit/04c8ad6c0fa4650e3d600faee793515c4aa2658c#diff-92ba76a137f5007f09ae7afd810f7bda5bb8f85d2089658122061ee458155c62R31
+    (VectorQuantizer2 is imported as Vector Quantizer)
+    
+    As a consequence, the shape of the indices returned by self.model.encode changed slightly
+    
+    This commit adapts for this change.
+
+[33mcommit f8317f432ca9dafa4469e0cac6097e16b5bdc575[m[33m ([m[1;33mtag: 0.14.0[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Wed Jun 30 10:15:52 2021 -0700
+
+    0.14.0
+
+[33mcommit 5a255eab032bcd821c2038c808b9682e485b3f1a[m
+Author: afiaka87 <3994972+afiaka87@users.noreply.github.com>
+Date:   Wed Jun 30 12:15:24 2021 -0500
+
+    stable_softmax, wanb_entity, visible discord, replace buggy colab (#320)
+    
+    * update vae.py for new f8 gumbel vqgan
+    
+    * Download and cache gumbel vae per flag.
+    
+    * Download correct 8 bit gumbel url.
+    
+    * tiny fix to backend code.
+    
+    * add correct urls for gumbel vqgan
+    
+    * rearrange codebook indices if using gumbel.
+    
+    * Fix gumbel decode() as well
+    
+    * Fix decode for GumbelVQ
+    
+    * add `--stable_softmax` for fp16/amp training
+    
+    * Pytorch LTS CUDA 10.2 Builds all deep speed ops.
+    
+    * `--wandb_entity` arg
+    
+    * Feature discord, replace buggy notebook, quick start link
+    
+    * Fix discord widget
+    
+    * Revert header to original
+    
+    * ditch `latest best` idea, rearrange header
+    
+    The "best currently trained model" idea was good - but there's clearly no way we can keep the README up to date on something like that.
+    
+    * formatting, add links, add my latest checkpoint
+    
+    added @rom1504 awesome dalle pseudo-serverless web frontend/backend provider. added generations from my most recent open ai blog checkpoint. added mega b's colab notebook for running inference on that checkpoint. fixed some bolding and other formatting issues per @rom1504's suggestion. decreased image width on a few images for the sake of scrollability.
+    
+    * Remove unnecessary download/setup.
+    
+    Co-authored-by: Sam Sepiol <>
+
+[33mcommit 7eb2e34ac07076a5bc99808b38795bb12e285f26[m[33m ([m[1;33mtag: 0.13.4[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Mon Jun 28 19:10:45 2021 -0700
+
+    0.13.4
+
+[33mcommit 69a9034cf6aba4f441039b050dd54bc871024025[m
+Merge: 124b144 f748d62
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Mon Jun 28 19:10:31 2021 -0700
+
+    Merge pull request #323 from rom1504/gumbel_vqgan
+    
+    Implement gumbel VQGAN
+
+[33mcommit f748d625f052ebbe6a6555ea475e6e8788d90be4[m
+Author: Romain Beaumont <romain.rom1@gmail.com>
+Date:   Mon Jun 28 15:44:53 2021 +0200
+
+    Implement gumbel VQGAN
+    
+    uses instantiate_from_config to load the model from the config
+    depend on pypi package taming-transformers-rom1504
+    from https://github.com/rom1504/taming-transformers
+    
+    should setup.py line should be reverted once
+    the pypi package is updated by the author
+    follow https://github.com/CompVis/taming-transformers/issues/30#issuecomment-869671232
+
+[33mcommit 124b144d4a90e818c92e876093f5165c90a96483[m[33m ([m[1;33mtag: 0.13.2[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Wed Jun 23 15:57:50 2021 -0700
+
+    0.13.2
+
+[33mcommit c8ccfaa2f20a77b7e1892b24448e2280071de58c[m
+Merge: 3180459 ab5c42c
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Wed Jun 23 15:57:34 2021 -0700
+
+    Merge pull request #317 from rom1504/patch-2
+    
+    Fix small bug in computing the f in vqgan
+
+[33mcommit ab5c42c8897193d02185ff6f76254562b1c4442e[m
+Author: Romain Beaumont <romain.rom1@gmail.com>
+Date:   Wed Jun 23 23:47:59 2021 +0200
+
+    Fix small bug in computing the f in vqgan
+    
+    Used to compute the attention resolution in dalle.
+    This didn't affect any previous training because all vqgan until today had a f=16 and 256=16*16
+    But would have affected use of the new vqgan released today that has f=8
+
+[33mcommit 318045906d5acbc20874744245c253da69ff1ac6[m[33m ([m[1;33mtag: 0.13.1[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Sun Jun 20 09:14:58 2021 -0700
+
+    0.13.1
+
+[33mcommit 440ceef109e78b9f7c93518246adbc6b8a7b09c8[m
+Merge: cc50680 516e59a
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Sun Jun 20 09:14:41 2021 -0700
+
+    Merge pull request #315 from rom1504/patch-2
+    
+    Use 1024 token VQGAN by default is no model file is specified
+
+[33mcommit 516e59a52c729c7a1ff7913b2033d53e3e9ec85d[m
+Author: Romain Beaumont <romain.rom1@gmail.com>
+Date:   Sun Jun 20 16:00:22 2021 +0200
+
+    Use 1024 token VQGAN by default is no model file is specified
+
+[33mcommit cc5068006658350abcde2aeaf0956dd860eb7d30[m
+Merge: a069d44 cece8bf
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Sat Jun 19 09:01:38 2021 -0700
+
+    Merge pull request #313 from Muennighoff/patch-1
+    
+    Remove double imports
+
+[33mcommit cece8bfa58cefc53f8a7a44cbe493ca226710371[m
+Author: Niklas Muennighoff <62820084+Muennighoff@users.noreply.github.com>
+Date:   Sat Jun 19 13:24:42 2021 +0200
+
+    Remove double imports
+
+[33mcommit a069d44344a8393a76d255c1bf9a37e79803e860[m
+Merge: 2eceb84 f215b01
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Wed Jun 16 16:59:08 2021 -0700
+
+    Merge pull request #311 from rom1504/patch-1
+    
+    Revert model parameter default changes
+
+[33mcommit f215b01f1a4f38aaccfb8e7bac70434c660a0ae1[m
+Author: Romain Beaumont <romain.rom1@gmail.com>
+Date:   Thu Jun 17 00:52:59 2021 +0200
+
+    Revert model parameter default changes
+    
+    It was changed in the web dataset PR by error
+
+[33mcommit 2eceb841b4a5795a56165a941b69a30da4cad3e6[m[33m ([m[1;33mtag: 0.13.0[m[33m)[m
+Merge: d6107cc 122bc51
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Wed Jun 16 15:13:04 2021 -0700
+
+    Merge pull request #280 from robvanvolt/loader-for-webdataset-included
+    
+    Added support for webdataset
+
+[33mcommit 122bc5108976612d8bb3139ed8dbf00bd9de7cfe[m
+Author: robvanvolt <robvanvolt@gmail.com>
+Date:   Wed Jun 16 23:03:00 2021 +0200
+
+    Removed comments
+
+[33mcommit fa45ba47f02a66a6329e4134138b132ef61e4561[m
+Author: robvanvolt <robvanvolt@gmail.com>
+Date:   Wed Jun 16 23:02:32 2021 +0200
+
+    resolved conflicts
+
+[33mcommit 0eeca2d15cebd401b0cc18a69a832fce19af33e9[m
+Author: robvanvolt <robvanvolt@gmail.com>
+Date:   Wed Jun 16 22:47:24 2021 +0200
+
+    spacing issues
+
+[33mcommit 3d77f71bb634b1b359f15eb07138a4dfe2bca865[m
+Author: robvanvolt <robvanvolt@gmail.com>
+Date:   Wed Jun 16 22:45:06 2021 +0200
+
+    Incorporated main branch changes
+
+[33mcommit 10d248330f1ea24bd6d8ffaf8286f90b21feb46d[m
+Merge: db32032 63b0e7d
+Author: robvanvolt <robvanvolt@gmail.com>
+Date:   Wed Jun 16 22:39:19 2021 +0200
+
+    Merge branch 'loader-for-webdataset-included' of https://github.com/robvanvolt/DALLE-pytorch into loader-for-webdataset-included
+
+[33mcommit d6107ccc24f2fbbc72e1fabbd97f01e6b143606d[m
+Merge: 50fb971 7c631fb
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Tue Jun 15 18:13:10 2021 -0700
+
+    Merge pull request #296 from mehdidc/resuming
+    
+    Save/Resume optimizer state, scheduler state, and epoch
+
+[33mcommit 7c631fb245d9793063f22f774515b0fd9eaee1d6[m
+Author: Mehdi Cherti <mehdicherti@gmail.com>
+Date:   Wed Jun 16 00:22:15 2021 +0200
+
+    space before equal sign
+
+[33mcommit 50fb9711cdbf0af0aac823ff9770f86937bdff9c[m
+Merge: cec0797 907737f
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Tue Jun 15 13:44:54 2021 -0700
+
+    Merge pull request #293 from rom1504/vqgan_custom
+    
+    add vqgan_model_path and vqgan_config_path parameters for custom vqgan support
+
+[33mcommit 907737fdeba55349393d9312cff14256289de4f9[m
+Author: r.beaumont <r.beaumont@criteo.com>
+Date:   Fri Jun 11 09:48:44 2021 +0000
+
+    add vqgan_path and vqgan_config_path parameters for custom vqgan support
+    
+    load the vqgan model from the provided path and config when not None
+
+[33mcommit cec0797e8c114f9c8947b4bb4de710720bbc8359[m
+Merge: dc147ca 96a3286
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Tue Jun 15 08:53:18 2021 -0700
+
+    Merge pull request #302 from afiaka87/patch-19
+    
+    Expose flops_profiler, attn_dropout, ff_dropout
+
+[33mcommit 63b0e7d80954f5fe9977595fd1cf6d3e2acd2354[m
+Author: robvanvolt <65366998+robvanvolt@users.noreply.github.com>
+Date:   Tue Jun 15 08:07:29 2021 +0200
+
+    Removed Wandb.ai default=offline
+
+[33mcommit 96a3286d03e4d1a8a792a1ae27b386d4b763851a[m
+Author: afiaka87 <3994972+afiaka87@users.noreply.github.com>
+Date:   Mon Jun 14 20:27:08 2021 -0500
+
+    `--flops_profiler`, `--attn_dropout`, `--ff_dropout`
+
+[33mcommit 659b2d86a1295f6f97c0a83dd8b55c473bdc1e76[m
+Author: afiaka87 <3994972+afiaka87@users.noreply.github.com>
+Date:   Mon Jun 14 20:09:59 2021 -0500
+
+    Expose profiler, ff dropout, attn dropout
+
+[33mcommit 01370177b7b0b7dc8390012afe243f15170c55fa[m
+Author: afiaka87 <3994972+afiaka87@users.noreply.github.com>
+Date:   Mon Jun 14 19:52:38 2021 -0500
+
+    Fix syntax error
+
+[33mcommit dc147ca0acaa487950d58935aaf157d1763b1d7d[m
+Merge: 653b5f9 eebba55
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Mon Jun 14 16:35:06 2021 -0700
+
+    Merge pull request #303 from janEbert/lr-sched-fix
+    
+    Call LR scheduler explicitly with DeepSpeed
+
+[33mcommit eebba55247b2b68b3626b4c068464d6b6c7e88b7[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Mon Jun 14 10:23:16 2021 +0200
+
+    Call LR scheduler explicitly with DeepSpeed
+    
+    Remove LR scheduler if-guards in training loops (at least in
+    `train_dalle.py`) in favor of more complicated initialization, fix #278.
+    
+    The reason we do not modify the `distr_backend.distribute` method is
+    that we expect its behaviour to be consistent with the backend API.
+    
+    Scheduling behaviour is now consistent and should not cause issues in
+    the future if the intervals for scheduling are modified.
+    
+    What is still confusing: if an LR scheduler is configured in the
+    DeepSpeed config in `train_dalle.py` **and** `--lr_decay` is passed, the
+    scheduler will be advanced more often than desired. This could be solved
+    the same way it's solved in `train_vae.py` if desired.
+
+[33mcommit db320324c1c713f001e0bc6c777c96edc4b16aa2[m
+Author: robvanvolt <robvanvolt@gmail.com>
+Date:   Sun Jun 13 14:57:56 2021 +0200
+
+    Updated console output.
+
+[33mcommit c345c33ad4425d77cac70db813dc1a8aa17de760[m
+Author: afiaka87 <3994972+afiaka87@users.noreply.github.com>
+Date:   Sun Jun 13 07:41:30 2021 -0500
+
+    Expose flops_profiler, attn_dropout, ff_dropout
+
+[33mcommit 1cdbec1277dd3c1dc65a8a5057e72b929265be57[m
+Author: robvanvolt <robvanvolt@gmail.com>
+Date:   Sun Jun 13 14:18:08 2021 +0200
+
+    Reverted --image_text_path to --image_text_folder
+
+[33mcommit a62c0485aa3dca652a739998df5e3c59f32541b6[m
+Author: robvanvolt <robvanvolt@gmail.com>
+Date:   Sun Jun 13 13:49:37 2021 +0200
+
+    Resolved conflict with main (keep_n_checkpoints)
+
+[33mcommit 653b5f9edca3131ec13d9148104fa899c35795ed[m
+Merge: 77da3ed 418ea98
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Sat Jun 12 20:09:58 2021 -0700
+
+    Merge pull request #285 from rom1504/delete_old_checkpoints
+    
+    Add an option to keep only N deepspeed checkpoints
+
+[33mcommit dda155fb56f4d5dccfbe3bcf8157df1fb81b476e[m
+Author: Mehdi Cherti <mehdicherti@gmail.com>
+Date:   Sat Jun 12 10:27:02 2021 +0200
+
+    make opt state/scheduler state/epoch non mandatory to be compatible with current behavior
+
+[33mcommit d48ea801e3bb54c08e20a678f25ed1775c49df79[m
+Author: Mehdi Cherti <mehdicherti@gmail.com>
+Date:   Sat Jun 12 10:20:53 2021 +0200
+
+    minor
+
+[33mcommit 6e7ad8f4eb2aa2bf0645ba857999b7c80593619b[m
+Author: Mehdi Cherti <mehdicherti@gmail.com>
+Date:   Sat Jun 12 10:03:42 2021 +0200
+
+    save scheduler state dict as well
+
+[33mcommit 07972d6ce438c1953d40f47c73d9a34b4d690fa0[m
+Author: Mehdi Cherti <mehdicherti@gmail.com>
+Date:   Sat Jun 12 09:28:02 2021 +0200
+
+    save/resume opt state dict, save/resume epoch number
+
+[33mcommit f0506691224d93edf54ba5b0668726418e5f2fc4[m
+Author: robvanvolt <robvanvolt@gmail.com>
+Date:   Fri Jun 11 20:53:17 2021 +0200
+
+    Changed to shard generator
+
+[33mcommit 43052c6fb8eafecc3cfdaae8e9ecb16d4bbd44ef[m
+Author: robvanvolt <robvanvolt@gmail.com>
+Date:   Fri Jun 11 20:02:59 2021 +0200
+
+    Updated argument --image_text_path, more generic
+
+[33mcommit daad061ef1010f7ed22ba51d5f4ab18e4e48e344[m
+Author: robvanvolt <robvanvolt@gmail.com>
+Date:   Fri Jun 11 19:54:52 2021 +0200
+
+    Upgraded version to 13.0
+
+[33mcommit e502a6de84f039e23463b2438abbb2282c3df991[m
+Author: robvanvolt <robvanvolt@gmail.com>
+Date:   Fri Jun 11 19:51:42 2021 +0200
+
+    Updated shards and streaming method for WDS
+
+[33mcommit 418ea9831534d1faf542c1a1ed35eb9d50238055[m
+Author: Romain Beaumont <romain.rom1@gmail.com>
+Date:   Thu Jun 10 17:42:47 2021 +0200
+
+    add (Careful) mention to keep_n_checkpoints option
+
+[33mcommit 32ad8894b3bbe9cf16397b2b197fc46b2d20a9f1[m
+Author: robvanvolt <robvanvolt@gmail.com>
+Date:   Tue Jun 8 21:43:05 2021 +0200
+
+    Removed default wandb mode=offline
+
+[33mcommit fb8226a983b6da9f1379f05f057cc6ff74530cab[m
+Author: robvanvolt <robvanvolt@gmail.com>
+Date:   Tue Jun 8 21:36:46 2021 +0200
+
+    Updated Readme, cleaned trained_dalle.py
+
+[33mcommit 2d67aad4ab1cc85ff7604e638ba96321d1b17e4b[m
+Author: robvanvolt <robvanvolt@gmail.com>
+Date:   Tue Jun 8 18:19:35 2021 +0200
+
+    DeepSpeed working, code a mess, tidy up next
+
+[33mcommit 6fb427be38e086f2f72c952185a6d798850e4729[m
+Author: robvanvolt <robvanvolt@gmail.com>
+Date:   Tue Jun 8 18:07:43 2021 +0200
+
+    Updated gitignore to ignore .vscode folder
+
+[33mcommit 309711f7a93c60cf613c68fb876d51b1641ad296[m
+Merge: 80508ff 77da3ed
+Author: robvanvolt <65366998+robvanvolt@users.noreply.github.com>
+Date:   Mon Jun 7 21:03:50 2021 +0200
+
+    Merge branch 'lucidrains:main' into loader-for-webdataset-included
+
+[33mcommit 77da3edf4e76ba614fdf8bb57c7455ede104858c[m
+Merge: 6937500 7779bd1
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Mon Jun 7 11:43:56 2021 -0700
+
+    Merge pull request #289 from afiaka87/patch-14
+    
+    Expose DeepSpeeds built-in gradient accumulation
+
+[33mcommit 7779bd1770e898558cfddbdf2a0f67c68ad8f918[m
+Author: afiaka87 <3994972+afiaka87@users.noreply.github.com>
+Date:   Mon Jun 7 13:32:40 2021 -0500
+
+    Expose DeepSpeeds built-in gradient accumulation
+
+[33mcommit 6ea2a7f83186eff6ea9fbe313f2e931abee9df5a[m
+Author: r.beaumont <r.beaumont@criteo.com>
+Date:   Sat Jun 5 20:10:23 2021 +0000
+
+    Add an option to keep only N deepspeed checkpoints
+    
+    Very useful to avoid filling up the disk with hundred of GBs of checkpoints
+
+[33mcommit 69375005aad0ac84aec0ead23fede6640e0eb5a4[m
+Merge: 8099697 df3ddea
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Sat Jun 5 13:24:43 2021 -0700
+
+    Merge pull request #284 from afiaka87/patch-13
+    
+    Easily enable apex O1 amp from train_dalle.py
+
+[33mcommit 80996978cbb7390f981a0832d972e4d8f5bae945[m
+Merge: 1335a1b 914715a
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Sat Jun 5 13:24:24 2021 -0700
+
+    Merge pull request #256 from rom1504/deepspeed_fix
+    
+    Deepspeed fix : save the normal model too
+
+[33mcommit df3ddea1e4fdf8a530bde6a0a6e0f308b4f6fbb1[m
+Author: afiaka87 <3994972+afiaka87@users.noreply.github.com>
+Date:   Fri Jun 4 20:20:34 2021 -0500
+
+    Fix typo
+
+[33mcommit ae3a895f223920249bc6e574c18c35c9f9838a83[m
+Author: afiaka87 <3994972+afiaka87@users.noreply.github.com>
+Date:   Fri Jun 4 19:41:34 2021 -0500
+
+    Fix tabs mixed with spaces
+
+[33mcommit 135b1c27012e5bac052aca29239e66bcc760c89e[m
+Author: afiaka87 <3994972+afiaka87@users.noreply.github.com>
+Date:   Fri Jun 4 19:39:02 2021 -0500
+
+    Just give users a bash script instead
+
+[33mcommit 4babfda687b9a12d1e019e753969c2f70e141bb0[m
+Author: afiaka87 <3994972+afiaka87@users.noreply.github.com>
+Date:   Fri Jun 4 19:36:59 2021 -0500
+
+    Create install_apex.sh
+
+[33mcommit 19cbf169efa4e137da548d69ad315e6a0f5ea506[m
+Author: afiaka87 <3994972+afiaka87@users.noreply.github.com>
+Date:   Fri Jun 4 19:33:50 2021 -0500
+
+    Fix section regard 16 bit precision
+
+[33mcommit dfb1bc0b2fa123de591bf15b901bd910185148b8[m
+Author: afiaka87 <3994972+afiaka87@users.noreply.github.com>
+Date:   Fri Jun 4 19:27:29 2021 -0500
+
+    Update README.md
+
+[33mcommit 29fa3b538875a45362b7af4fb54dd5dcd7580fef[m
+Author: afiaka87 <3994972+afiaka87@users.noreply.github.com>
+Date:   Fri Jun 4 19:23:42 2021 -0500
+
+    Include section about apex amp in readme.
+
+[33mcommit e26ee585fd77c7295639194381bf0465a7b6cc66[m
+Author: afiaka87 <3994972+afiaka87@users.noreply.github.com>
+Date:   Fri Jun 4 19:13:30 2021 -0500
+
+    Easily enable apex O1 amp from train_dalle.py
+    
+    CogView sidestepped needing to "tame" 16 bit precision by just using "O2" (almost 16 bit) precision.
+    
+    I tried implementing O2 and I think it's rather possible but there are some casts from Long to Float which need to happen for it to work.
+    
+    The O1 case works very well out as is however. In my case (RTX 2070) - I go from ~16 samples per second to ~40 samples per second. using fp16 instead I get around ~50 samples. So it's faster but not necessarily by much. I assume this benchmark changes drastically when the comms latency of a multi-node system needs to be considered and my intuition is that sending half as many bits across the wire can make something like optimizer offloading and allreduce more effective.
+    
+    tl;dr automatic mixed precision is slower than fp16, but you'll be able to see generations during training and won't have to deal with potential divergence issues caused by training fp16.
+
+[33mcommit 914715a3e03987878d0584859fa69dfcbc8664a5[m
+Author: Romain Beaumont <romain.rom1@gmail.com>
+Date:   Sat Jun 5 00:30:31 2021 +0200
+
+    Some changes in comments for deepspeed saving to improve clarity
+
+[33mcommit 58c6035c43d54f670755dba8e769ab31213c75b0[m
+Author: Romain Beaumont <romain.rom1@gmail.com>
+Date:   Fri Jun 4 17:52:04 2021 +0200
+
+    add if for deepspeed optimizations
+
+[33mcommit 80508ffc6222e8c124de761762e24abbd34557c4[m
+Author: robvanvolt <robvanvolt@gmail.com>
+Date:   Wed Jun 2 00:11:49 2021 +0200
+
+    Added WebDataset to setup.py
+
+[33mcommit 6f60c6bd52d1800f474184548cd67c10615bb9af[m
+Author: robvanvolt <robvanvolt@gmail.com>
+Date:   Tue Jun 1 23:31:48 2021 +0200
+
+    Removed unnecessary comments.
+
+[33mcommit 37afafdb30bc7613a11564dcd3f744bf2f4fead9[m
+Author: robvanvolt <robvanvolt@gmail.com>
+Date:   Tue Jun 1 22:56:40 2021 +0200
+
+    Added support for webdataset
+
+[33mcommit 1335a1b383f5d2b34f1fc95d45f6fc30ad0376d4[m
+Merge: a51985a 67fafd2
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Mon May 31 13:12:15 2021 -0700
+
+    Merge pull request #277 from wcshin-git/main
+    
+    fix horovod and lr decay issue
+
+[33mcommit 67fafd2dc9f5fcdcf9ecd80acf3b42676ad45e6d[m
+Author: wcshin <woncheol1905@gmail.com>
+Date:   Mon May 31 10:48:02 2021 +0000
+
+    fix horovod and lr decay issue
+
+[33mcommit a51985af3281966ce26a01b191f8643f7c6ceae2[m[33m ([m[1;33mtag: 0.12.5[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Fri May 28 16:18:46 2021 -0700
+
+    keep 0.12 backwards compatible for trained models
+
+[33mcommit e8c2d9948196d6e7d3911767d533dd01f11ea821[m[33m ([m[1;33mtag: 0.12.4[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Fri May 28 14:56:23 2021 -0700
+
+    stability measure 3
+
+[33mcommit f794ba62efcfee23e4d9a2e6fa93b532fd50af56[m[33m ([m[1;33mtag: 0.12.2[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Fri May 28 12:54:36 2021 -0700
+
+    stability measure number 2
+
+[33mcommit 27079ddc84cf1fcefb9146032f36f3fe3fa947de[m[33m ([m[1;33mtag: 0.12.1[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Fri May 28 12:50:26 2021 -0700
+
+    add first training stability measure from cogview paper, hidden behind feature flag
+
+[33mcommit 093b9ef4618a8381fd68b648bd177b7097550503[m
+Merge: ae0e6a9 8866785
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Thu May 27 16:15:23 2021 -0700
+
+    Merge pull request #246 from rom1504/sample_per_sec
+    
+    Sample per sec
+
+[33mcommit ae0e6a94ca95aa16c8c207bc79dc30918cfb25fd[m
+Merge: e7d3d27 114283d
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Thu May 27 16:14:46 2021 -0700
+
+    Merge pull request #257 from rom1504/save_every_n_step
+    
+    Save every n step
+
+[33mcommit 114283d70b14f2772e6c09fba5bb9610b8ca7f54[m
+Author: r.beaumont <r.beaumont@criteo.com>
+Date:   Wed May 26 09:31:30 2021 +0000
+
+    Add a parameter to save the model every n steps
+    
+    saving only once per epoch might be too rare for big datasets
+
+[33mcommit 9525be9672d3b0d9e55646f0b1f3898efc2f85bc[m
+Author: r.beaumont <r.beaumont@criteo.com>
+Date:   Wed May 26 09:24:57 2021 +0000
+
+    Save dalle.pt with deepspeed
+    
+    also a small fix for the dalle output file, somehow I removed the .pt addition in previous pr
+    also save once initially to make sure saving is working
+
+[33mcommit 88667851c7c927bbfadad68b4574365def68dcb4[m
+Author: r.beaumont <r.beaumont@criteo.com>
+Date:   Tue May 11 21:36:15 2021 +0000
+
+    Implement sample_per_sec metric
+    
+    fix #242
+
+[33mcommit e7d3d2792c8a1747c2efcef03003ac538522b400[m
+Merge: bdb0428 47af5fd
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Tue May 25 08:44:17 2021 -0700
+
+    Merge pull request #244 from rom1504/dalle_output_file_name
+    
+    save and report dalle.pt at the end of each epoch
+
+[33mcommit 47af5fdd7f23ec46a68ae9933b4600e5366d5e33[m
+Author: r.beaumont <r.beaumont@criteo.com>
+Date:   Tue May 11 21:36:15 2021 +0000
+
+    save and report dalle.pt at the end of each epoch
+    
+    also add a parameter to allow specifying a different name to avoid overwriting
+    if running 2 dalle on the same folder
+
+[33mcommit bdb04280c9ab55eb20f86b375dc1aad20fbd5315[m[33m ([m[1;33mtag: 0.12.0[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Wed May 19 14:30:15 2021 -0700
+
+    add autoregressive gMLP layer
+
+[33mcommit c4330e35d96708328bbe54a4ae8f6355056755a7[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Mon May 10 11:03:36 2021 -0700
+
+    add new sample from @rom1504
+
+[33mcommit 87a185245e6a80d68483f4b3e0538584d3cde508[m
+Merge: 2f6fa10 365ae03
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Mon May 10 10:54:08 2021 -0700
+
+    Merge pull request #241 from janEbert/fix-checkpoints
+    
+    Fix DeepSpeed checkpoints not storing hyperparameters
+
+[33mcommit 365ae03a975ee074cdb7f26337046db6220e4805[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Mon May 10 10:14:03 2021 +0200
+
+    Save auxiliary values with DeepSpeed checkpoint
+    
+    This way, we can use the standard routines for resuming which require
+    hyperparameters for model initialization.
+    We can now also allow passing in a DeepSpeed checkpoint.
+
+[33mcommit 2f6fa1061322e3f35bbf68191a18a1d789d09ff2[m
+Merge: e6fd6fe e31f88e
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Sun May 9 14:54:04 2021 -0700
+
+    Merge pull request #239 from rom1504/patch-1
+    
+    Limit outfile dir name length in generate.py
+
+[33mcommit e31f88e83ee79d5ef01b3a24914777c36d675ccf[m
+Author: Romain Beaumont <romain.rom1@gmail.com>
+Date:   Sun May 9 23:19:45 2021 +0200
+
+    255 is too close to the limit, fails in some cases, 100 is safer
+
+[33mcommit 7c2fec76a2de64e5f28cbbaa36472ac3d9e64df2[m
+Author: Romain Beaumont <romain.rom1@gmail.com>
+Date:   Sun May 9 22:59:37 2021 +0200
+
+    Limit outfile dir name length in generate.py
+    
+    Make it possible to use generate.py with text longer than the filename typical limit (255)
+
+[33mcommit e6fd6fe531def8f54df2127722e9b7a8a2a63669[m
+Merge: 60aa9c4 414c720
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Fri May 7 14:07:49 2021 -0700
+
+    Merge pull request #237 from afiaka87/patch-12
+    
+    DeepSpeed Dependencies inside docker build
+
+[33mcommit 414c720deb1843e40367de168cd74664dc5d3791[m
+Author: afiaka87 <3994972+afiaka87@users.noreply.github.com>
+Date:   Fri May 7 16:00:23 2021 -0500
+
+    Update run instructions to include a bind mount
+    
+    The original line here doesn't work on the latest docker. This is needed to run the container.
+
+[33mcommit ca111870f2c4217a4b1f95bfc71883477e36289c[m
+Author: afiaka87 <3994972+afiaka87@users.noreply.github.com>
+Date:   Fri May 7 15:55:43 2021 -0500
+
+    Update Dockerfile
+
+[33mcommit 36d93e4375ca02a92804cec5d3d6c947d847db40[m
+Author: afiaka87 <3994972+afiaka87@users.noreply.github.com>
+Date:   Fri May 7 15:54:55 2021 -0500
+
+    DeepSpeed Dependencies inside docker build
+    
+    This adds the full installation of DeepSpeed with _working_ sparse attention to the Dockerfile so users dont have to figure it out themselves.
+
+[33mcommit 60aa9c4061211ca8a799afa54f41638a5ff2dbfb[m
+Merge: 0923560 b97d48b
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Fri May 7 10:49:16 2021 -0700
+
+    Merge pull request #236 from mehdidc/attn_types_as_argument
+    
+    add attn_types as an argument
+
+[33mcommit b97d48b298e435af834b35c5c50f1c7e429eb4bf[m
+Author: Mehdi Cherti <mehdicherti@gmail.com>
+Date:   Fri May 7 18:33:47 2021 +0200
+
+    use quotes instead of double quotes for strings
+
+[33mcommit 3297fc46a0881702092396ab46c76de74531a832[m
+Author: Mehdi Cherti <mehdicherti@gmail.com>
+Date:   Fri May 7 18:28:17 2021 +0200
+
+    add attn_types as argument
+
+[33mcommit 0923560378dccc7dda18b4c3f97b38c561cbd9f0[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Thu May 6 10:06:42 2021 -0700
+
+    turn all training and model setting parameters into command line arguments
+
+[33mcommit 19f42124458b575305a1a386d0f88cb22790a6d5[m[33m ([m[1;33mtag: 0.11.3[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Tue May 4 15:28:41 2021 -0700
+
+    make sure to freeze VAE parameters after being passed into DALL-E
+
+[33mcommit a0e8ea4a1bee1761b4065a6048b56d4594190b99[m
+Merge: 90bf9df 724e11e
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Tue May 4 08:49:41 2021 -0700
+
+    Merge pull request #230 from mehdidc/data_sampler_set_epoch
+    
+    use data_sampler.set_epoch to avoid having the same order in each epoch
+
+[33mcommit 90bf9df32b995ae43c6b7cec1c18c6a569374f20[m
+Merge: 90b124a c4223f9
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Tue May 4 08:49:24 2021 -0700
+
+    Merge pull request #231 from janEbert/ds-checkpointing-base
+    
+    Add basic DeepSpeed checkpointing
+
+[33mcommit c4223f936c2f5099c69a7f23be1bc087f4da2a29[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Thu Apr 29 10:53:36 2021 +0200
+
+    Save either DeepSpeed or standard checkpoints
+    
+    Instead of both.
+
+[33mcommit bec2bd1356b7e0868ece88536c4cea88a5f5f972[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Thu Apr 22 13:25:33 2021 +0200
+
+    Support DeepSpeed checkpoints
+    
+    VAE DeepSpeed checkpoints can currently not be merged into the DALL-E
+    model.
+    There may be issues with loading non-DeepSpeed checkpoints – this is
+    currently experimental.
+
+[33mcommit 724e11e62ae14139713ccb4d6b692ac8758f5b91[m
+Author: Mehdi Cherti <mehdicherti@gmail.com>
+Date:   Tue May 4 09:28:28 2021 +0200
+
+    use data_sampler.set_epoch to avoid having the same order in each epoch
+
+[33mcommit 90b124a91cde35f4ad73de15e93e6a9361b36f34[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Mon May 3 15:54:41 2021 -0700
+
+    discord link again (unexpirable)
+
+[33mcommit db8fb27541381a93f90b49244377374308972767[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Mon May 3 14:54:30 2021 -0700
+
+    discord link
+
+[33mcommit a97e5c901cba5cbdcfe57d1012bcf293b91d9ecc[m[33m ([m[1;33mtag: 0.11.2[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Mon May 3 13:57:04 2021 -0700
+
+    0.11.2
+
+[33mcommit c2a354adf725f57635fbc90a78aed2d1f3a9db25[m
+Merge: 65ea8df c8e0f12
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Mon May 3 13:56:51 2021 -0700
+
+    Merge pull request #229 from janEbert/method-name-fix
+    
+    Fix DeepSpeed method name
+
+[33mcommit c8e0f129ac66a04858f07c0e77f898da153f72ce[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Mon May 3 17:41:38 2021 +0200
+
+    Fix DeepSpeed method name
+    
+    register_external_parameters -> register_external_parameter
+    (without "s" at end)
+
+[33mcommit 65ea8df587cbbf7e968dd614253349c363be8e98[m
+Merge: 95c0005 6cb5f1c
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Mon May 3 08:06:20 2021 -0700
+
+    Merge pull request #227 from afiaka87/patch-10
+    
+    Revert to Adam again
+
+[33mcommit 95c000540b3e345ee459aa9a35ea47704f9dd2cc[m
+Merge: 05e274e 7318c04
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Mon May 3 08:04:28 2021 -0700
+
+    Merge pull request #228 from janEbert/readme-update
+    
+    Mention DeepSpeed FP16 + ZeRO change
+
+[33mcommit 6cb5f1c0adf36eb2b669f5e112beee94a2148622[m
+Author: afiaka87 <3994972+afiaka87@users.noreply.github.com>
+Date:   Mon May 3 09:12:40 2021 -0500
+
+    Revert to Adam again
+    
+    I was quite wrong about AdamW working - I merely hadn't trained for long enough. The problem exhibits after about 4 epochs for me.
+
+[33mcommit 7318c045cb49ce2185925ef1a86b1455f6ff04c9[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Mon May 3 16:01:52 2021 +0200
+
+    Mention DeepSpeed FP16 + ZeRO change
+    
+    FP32 can now be used with ZeRO as well.
+
+[33mcommit 05e274e9fb7fc78a03c8cce38876bfc5d6835693[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Sun May 2 19:18:19 2021 -0700
+
+    update readme
+
+[33mcommit 2b59feab0be0f7b76421c7e6fd74e2071f73f342[m
+Merge: b3541cc 754183f
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Sun May 2 19:13:41 2021 -0700
+
+    Merge pull request #226 from grantCelley/main
+    
+    Created a Dockerfile
+
+[33mcommit 754183ff4cb501f66fd8f8c561f94b6bc00bff35[m
+Author: Grant <grant.celley@gmail.com>
+Date:   Sun May 2 18:05:06 2021 -0400
+
+    Updated Readme.md to explain how to run in docker
+
+[33mcommit 39faece712b65bab61bb17013793ada492d4c839[m
+Author: Grant <grant.celley@gmail.com>
+Date:   Sun May 2 16:34:26 2021 -0400
+
+    Got Dockerfile to be built and accuataly tested it. It will also can be customized for cpu down the road
+
+[33mcommit 2e2ca6054f1e0e979d67ca0105f9e6e2b5c8113f[m
+Author: Grant <grant.celley@gmail.com>
+Date:   Sun May 2 15:45:00 2021 -0400
+
+    Added a dockerfile for gpu running.
+
+[33mcommit b3541cc5b6a848e63d0fd62aa102001c4d2a4196[m[33m ([m[1;33mtag: 0.11.1[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Fri Apr 30 08:09:08 2021 -0700
+
+    0.11.1
+
+[33mcommit 2dafc1bb0b55e5253fce36247b3930092414240e[m
+Merge: 511cf86 630eaca
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Fri Apr 30 08:08:53 2021 -0700
+
+    Merge pull request #223 from janEbert/is_distributed
+    
+    Fix setting `is_distributed` when distributed
+
+[33mcommit 630eacac5863baf47d66f0481260725f601e7d17[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Fri Apr 30 17:02:23 2021 +0200
+
+    Fix setting `is_distributed` when distributed
+
+[33mcommit 511cf863fdb5d8be62319b21e63a3821e0fad555[m
+Merge: e848f1c 2903643
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Thu Apr 29 07:58:02 2021 -0700
+
+    Merge pull request #220 from afiaka87/patch-9
+    
+    Revert to AdamW
+
+[33mcommit 29036432015e1e205d1e857b83fa3d626040648b[m
+Author: afiaka87 <3994972+afiaka87@users.noreply.github.com>
+Date:   Thu Apr 29 01:27:59 2021 -0500
+
+    Revert to AdamW
+    
+    i believe these are the OpenAI defaults plus amsgrad
+
+[33mcommit e848f1c2b86ea82bffff512bde115c9e96c15735[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Tue Apr 27 15:52:56 2021 -0700
+
+    readme
+
+[33mcommit ef44c98c3fbfe1a00c7ae7ae9350f8ad0e6e4818[m[33m ([m[1;33mtag: 0.11.0[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Thu Apr 22 19:05:52 2021 -0700
+
+    0.11.0
+
+[33mcommit 01a781efa0454c13e89f2b85210ee4d5a307e7b6[m
+Merge: 7a4d465 100a110
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Thu Apr 22 19:05:38 2021 -0700
+
+    Merge pull request #215 from lucidrains/fix-attention
+    
+    fix memory issues for sparse convolutional attention
+
+[33mcommit 100a110d6fa98b8559a780ae71d9ef1f1c7789c7[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Thu Apr 22 13:57:49 2021 -0700
+
+    make sparse axial attention memory efficient too
+
+[33mcommit f14a313431e9072bef9a8219ea3d99d7683ada06[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Thu Apr 22 13:42:46 2021 -0700
+
+    fix memory issues for sparse convolutional attention
+
+[33mcommit 7a4d46591f199ad72f27af87d0e7e2872790a137[m[33m ([m[1;33mtag: 0.10.8[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Thu Apr 22 12:16:41 2021 -0700
+
+    0.10.8
+
+[33mcommit a9aec32bb8bc7857cef7d0d074db401e9bc0a700[m
+Merge: 3d6ec82 b5ffb78
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Thu Apr 22 12:16:27 2021 -0700
+
+    Merge pull request #214 from janEbert/dist_backend_args
+    
+    Handle distributed backend args better
+
+[33mcommit b5ffb78ba8702dc0d7844ff3cba8865f0c6b8212[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Thu Apr 22 11:21:21 2021 +0200
+
+    Raise an error when backend not available
+
+[33mcommit 2d7c4fe3136bbc9bbb52d76cfc2d85514c488d38[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Thu Apr 22 11:20:50 2021 +0200
+
+    Remove unsupported Horovod arguments
+
+[33mcommit 3d6ec82ff586e192a499fd0868488b1dd5b038dd[m[33m ([m[1;33mtag: 0.10.7[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Wed Apr 21 16:23:41 2021 -0700
+
+    0.10.7
+
+[33mcommit 2d314aaed157ce5d734561dc064f2854ebe36866[m
+Merge: 130da7f 509801b
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Wed Apr 21 16:23:14 2021 -0700
+
+    Merge pull request #205 from afiaka87/refactor_dataset
+    
+    Refactor ImageTextDataset to its own file. Implement error handling a…
+
+[33mcommit 509801b5975f3478321c7cb3043206440baf9671[m
+Author: afiaka87 <3994972+afiaka87@users.noreply.github.com>
+Date:   Wed Apr 21 13:35:01 2021 -0500
+
+    Make sure deepspeed never receives a cuda call
+
+[33mcommit da03ae0f3cd60bc7c8ac193fe45893d4cd08f05d[m
+Author: afiaka87 <3994972+afiaka87@users.noreply.github.com>
+Date:   Wed Apr 21 13:32:30 2021 -0500
+
+    Wildcard ignore on checkpoints.
+
+[33mcommit dfcea5be4f990dfdbd9355edc5b010f587bb965b[m
+Author: afiaka87 <3994972+afiaka87@users.noreply.github.com>
+Date:   Wed Apr 21 13:31:16 2021 -0500
+
+    Remove old call to cuda empty_cache
+
+[33mcommit 130da7f21767c3c0cebb1e3622b2c68abc270d76[m[33m ([m[1;33mtag: 0.10.6[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Wed Apr 21 00:13:36 2021 -0700
+
+    0.10.6
+
+[33mcommit 9d34c6a8ab28f3898d94dc64604720454bd8cee0[m
+Merge: 7e7cb29 db38201
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Wed Apr 21 00:12:59 2021 -0700
+
+    Merge pull request #210 from janEbert/deepspeed-fixes
+    
+    Fix DeepSpeed config scheduler key
+
+[33mcommit db3820145d5ea322cabafb5506d3b4318547f7a1[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Wed Apr 21 09:04:17 2021 +0200
+
+    Fix DeepSpeed config scheduler key
+
+[33mcommit 574aac62049685da8357266609c8cd1f59706f37[m
+Author: Sam Sepiol <>
+Date:   Tue Apr 20 13:10:11 2021 -0500
+
+    autopep8. leave cuda call in as in main. import wandb at top of file so it fails immediately. Clarify the  argument.
+
+[33mcommit 7e7cb29e45dd94405ce18c8078ce460eee2cd0cb[m[33m ([m[1;33mtag: 0.10.5[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Tue Apr 20 10:49:43 2021 -0700
+
+    0.10.5
+
+[33mcommit 168bcc9c0d9f27eb9aa0decedff028ed9f95bac2[m
+Merge: ec19397 c226a1e
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Tue Apr 20 10:49:30 2021 -0700
+
+    Merge pull request #209 from janEbert/deepspeed-fixes
+    
+    DeepSpeed sanity checks and LR scheduler fix
+
+[33mcommit dc64174eaaa2e2c6fa40f087877c215e9767eaa9[m
+Author: afiaka87 <3994972+afiaka87@users.noreply.github.com>
+Date:   Tue Apr 20 12:28:15 2021 -0500
+
+    Wrong conditional
+
+[33mcommit c226a1ef24facafaaf595b836b423dd833324afb[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Tue Apr 20 18:46:23 2021 +0200
+
+    Avoid progressing LR schedule twice
+    
+    Only affected DeepSpeed.
+
+[33mcommit fbe07f09ade8f55e1375208f92924a3528b505a6[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Tue Apr 20 18:45:22 2021 +0200
+
+    Add several DeepSpeed sanity checks
+
+[33mcommit 4c92340cb36cda96d9f95c11427fa60121fee560[m
+Merge: d9acda2 ec19397
+Author: afiaka87 <3994972+afiaka87@users.noreply.github.com>
+Date:   Tue Apr 20 10:59:23 2021 -0500
+
+    Merge branch 'main' into refactor_dataset
+
+[33mcommit ec1939780aeabd29bfaca598c11ed0d7c3e3a9a3[m[33m ([m[1;33mtag: 0.10.4[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Tue Apr 20 08:43:42 2021 -0700
+
+    0.10.4
+
+[33mcommit 9cce36d4bd9fb1ff590209a843ffe048d69ee59c[m
+Merge: c9d3712 a3b1c4a
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Tue Apr 20 08:43:24 2021 -0700
+
+    Merge pull request #207 from janEbert/deepspeed-fixes
+    
+    Fix various DeepSpeed issues
+
+[33mcommit d9acda29ba4595b493cf974e52818c6b110de70c[m
+Author: Sam Sepiol <>
+Date:   Tue Apr 20 09:30:29 2021 -0500
+
+    Negate -is_shuffle- var
+
+[33mcommit 58f7ee02df63b541ff027c46601e9ebfcecead17[m
+Author: Sam Sepiol <>
+Date:   Tue Apr 20 09:29:43 2021 -0500
+
+    Fix argparse import order.
+
+[33mcommit a3b1c4a7037814d323a93c672c45cee4f1dbe5d2[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Tue Apr 20 15:35:07 2021 +0200
+
+    Register VQGAN external parameters
+
+[33mcommit f1e0d448705da6123dfe9f1c87c88c3758e5ce6e[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Tue Apr 20 12:48:52 2021 +0200
+
+    Let DeepSpeed handle FP16 and CUDA
+    
+    Revert #204.
+
+[33mcommit 2a92074ee217fe30d0c68e887cf938f59856c7e4[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Tue Apr 20 12:46:39 2021 +0200
+
+    Avoid calling `torch.nn.Module.forward` directly
+
+[33mcommit 158de8e9decd066a4b45b46ed6465f89c63db2c4[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Mon Apr 19 13:34:29 2021 +0200
+
+    Register dVAE external parameters
+
+[33mcommit f9ebc1ed58507a06f0278afa53debb9e40f0234b[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Mon Apr 12 15:59:25 2021 +0200
+
+    Remove now redundant hack against device errors
+
+[33mcommit fdb31e18c931cd137267f47f38b63b70f6d56b91[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Mon Apr 12 15:40:53 2021 +0200
+
+    Set CUDA device earlier to avoid errors
+    
+    Previously, parts of the model would be initialized on the default GPU
+    leading to OOM errors and possibly undefined behavior.
+    
+    Fix #161
+
+[33mcommit d6cdd3ed0f05de18502dd71fc7d576c255aee205[m
+Author: Sam Sepiol <>
+Date:   Mon Apr 19 17:16:43 2021 -0500
+
+    Ignore output files like dall.pt, taming/ and wandb/
+
+[33mcommit e79b077d50da26879d8e71c6fc45923a6736dbf5[m
+Author: Sam Sepiol <>
+Date:   Mon Apr 19 17:14:21 2021 -0500
+
+    Quit training early if args.image_text_folder is a bad Path
+
+[33mcommit c76db15e4d34de6c97fb626fbce2b3e67b2a6999[m
+Author: Sam Sepiol <>
+Date:   Mon Apr 19 17:07:20 2021 -0500
+
+    pass args.truncate_captions into TextImageDataset
+
+[33mcommit 86e07367625a23e42d664b8cd44baf753f797f02[m
+Author: Sam Sepiol <>
+Date:   Mon Apr 19 16:49:13 2021 -0500
+
+    Make sure to only return random sample if shuffle is enabled.
+
+[33mcommit 6c4a55043c88fc34cfe5257fa78fa129e8e2efd6[m
+Author: Sam Sepiol <>
+Date:   Mon Apr 19 16:38:01 2021 -0500
+
+    Pass tokenizer and truncate captions args into dataset.
+
+[33mcommit 3d3de3bbfb0ec51e84a37e40af139184844ad537[m
+Author: Sam Sepiol <>
+Date:   Mon Apr 19 16:26:30 2021 -0500
+
+    Remain consistent with lucids argparsing for now.
+
+[33mcommit b51e115121d767badf6022295838b04efcfd3a60[m
+Author: Sam Sepiol <>
+Date:   Mon Apr 19 16:20:27 2021 -0500
+
+    Refactor ImageTextDataset to its own file. Implement error handling and index skipping in ImageTextDataset. Refactor args handling in train_dalle.py.
+
+[33mcommit c9d371281e7d6f7e9fdde7cf0248a64e10dc74c0[m[33m ([m[1;33mtag: 0.10.3[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Mon Apr 19 12:20:26 2021 -0700
+
+    use youtokentome instead of huggingface for default tokenizer
+
+[33mcommit 2856439ab9875b79dc57bbb70d2d8cc052c2716a[m
+Merge: f276688 f4fbd1e
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Mon Apr 19 05:38:39 2021 -0700
+
+    Merge pull request #204 from Yuliang-Liu/avoid_accumulate_the_first_gpu
+    
+    Update train_vae.py
+
+[33mcommit f4fbd1e9696bd4dbadf099495fd07c336d96d5eb[m
+Author: Yuliang Liu <34134635+Yuliang-Liu@users.noreply.github.com>
+Date:   Mon Apr 19 17:47:44 2021 +0800
+
+    Update train_vae.py
+    
+    Avoid accumulating memory at the first gpu.
+
+[33mcommit f2766889a3e6a1d4244904ee0b01c4504b9949dc[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Sat Apr 17 16:21:53 2021 -0700
+
+    readme
+
+[33mcommit 15fe7d66e3bd82ed9f656c39b068708459b11f63[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Thu Apr 15 20:53:16 2021 -0700
+
+    make resized ratio settable with args
+
+[33mcommit c47431c607763812c6b523054454001fdfeaef2c[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Thu Apr 15 19:21:43 2021 -0700
+
+    fix import
+
+[33mcommit ce0c8929075fd793367db3b874accae140818ca1[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Thu Apr 15 12:04:52 2021 -0700
+
+    offer ability to generate more than one text
+
+[33mcommit dbbbcfd05ade2692ca1881ae121f9509c3fd8c2e[m[33m ([m[1;33mtag: 0.10.2[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Thu Apr 15 12:00:55 2021 -0700
+
+    offer support for chinese
+
+[33mcommit 329fc0a092be1df2e216864941317f6b2d3072ac[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Thu Apr 15 08:48:50 2021 -0700
+
+    add more results
+
+[33mcommit f3f96388ccc57e64ae65cc22af5a4d4dda52a8ac[m[33m ([m[1;33mtag: 0.10.1[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Thu Apr 15 07:53:44 2021 -0700
+
+    0.10.1
+    
+    0.10.1
+
+[33mcommit 0276a7a4a9028c07b82b48a3c18ef8d1ae9712c6[m
+Merge: 02de601 49d288b
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Thu Apr 15 07:53:06 2021 -0700
+
+    Merge pull request #201 from janEbert/prefix-vars
+    
+    Prefix all `distr_backend`-wrapped variables
+
+[33mcommit 49d288bc6bf50186d30efe4287535dbf03252c4e[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Thu Apr 15 09:30:28 2021 +0200
+
+    Prefix all `distr_backend`-wrapped variables
+    
+    Previously only the model was discerned for before/after wrapping. Users
+    encountered errors when trying to access what was assumed to be a
+    non-wrapped optimizer after its wrapping.
+    
+    This adds clarity around wrapping but possibly increases confusion due
+    to differently named variables.
+
+[33mcommit 02de601bc7eefa9b72402947758d1d29f5842403[m
+Merge: 8bcc910 47ad357
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Wed Apr 14 22:46:50 2021 -0700
+
+    Merge pull request #199 from lucidrains/hf-bpe
+    
+    update readme
+
+[33mcommit 47ad3573b856ef68be76ac3de4be8ff092544590[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Wed Apr 14 22:43:10 2021 -0700
+
+    update readme
+
+[33mcommit 8bcc910da59aea1e8a5131015959c1ad2f3f8e00[m[33m ([m[1;33mtag: 0.10.0[m[33m)[m
+Merge: afdbb12 4f0bb00
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Wed Apr 14 22:37:51 2021 -0700
+
+    Merge pull request #198 from lucidrains/hf-bpe
+    
+    add ability to use a huggingface tokenizer by specifying path to BPE …
+
+[33mcommit 4f0bb0013071a540876e72610aabd20244220373[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Wed Apr 14 22:37:09 2021 -0700
+
+    add ability to use a huggingface tokenizer by specifying path to BPE json file
+
+[33mcommit afdbb12188832e376c8f50598b96dee7c41ed214[m
+Merge: 6306954 7b5188f
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Mon Apr 12 08:03:31 2021 -0700
+
+    Merge pull request #189 from janEbert/horovod
+    
+    Horovod support
+
+[33mcommit 6306954e71b64ae84e44b711dd21ef6eedd04919[m
+Merge: 21b7f82 e0b7106
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Mon Apr 12 08:03:21 2021 -0700
+
+    Merge pull request #188 from janEbert/distr_backend
+    
+    Rework distributed backend
+
+[33mcommit 7b5188f39ff6fa2a44a6c003350edbc89f28de22[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Mon Apr 12 15:35:28 2021 +0200
+
+    Mention @afiaka87's Horovod wiki page
+    
+    Slight restructuring so we can fit a link to the original website in.
+
+[33mcommit 3f5e89590ca86aeafe5a0e198571724f3a5717a9[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Mon Apr 12 15:09:16 2021 +0200
+
+    Add Horovod usage instructions
+    
+    And warn about Horovod batch size increase.
+    Also split the distributed training section into subsections for each
+    backend.
+
+[33mcommit 7f4401d6142dcb5a675f806fcce620d325786f27[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Mon Apr 12 13:15:45 2021 +0200
+
+    Support Horovod
+
+[33mcommit e0b71065428e451f6d0ce299104379a03d817c28[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Mon Apr 12 14:33:39 2021 +0200
+
+    Rework distributed backend
+    
+    We now use an abstract class to easily support adding new backends.
+
+[33mcommit 21b7f826d6324d7b6571f31a8bf08d65def88f68[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Sun Apr 11 15:29:03 2021 -0700
+
+    update discord invite
+
+[33mcommit 6a9f76286ee33d283f4581bd96716e78040d3b48[m[33m ([m[1;33mtag: 0.9.6[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Thu Apr 8 11:19:06 2021 -0700
+
+    make sure, if not using deepspeed, that cached folder is still created
+
+[33mcommit 02ded56e619325c0f8fd542c6ce34aed92bf0675[m
+Merge: 6d2295c 51fa4d9
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Wed Apr 7 09:22:26 2021 -0700
+
+    Merge pull request #176 from TheoCoombes/support-bmp
+    
+    Add .bmp image file support
+
+[33mcommit 51fa4d96397cddf68f00491d6bc70bd5625d0772[m
+Author: TheoCoombes <theocoombes06@gmail.com>
+Date:   Wed Apr 7 17:16:03 2021 +0100
+
+    add bmp support
+
+[33mcommit 6d2295ca29d2d992fc5dc81095728cf5a4813ed6[m
+Merge: 78c61e7 9221bf7
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Wed Apr 7 06:55:35 2021 -0700
+
+    Merge pull request #173 from janEbert/deepspeed
+    
+    Re-add gradient clipping without DeepSpeed
+
+[33mcommit 78c61e719ec6ec008a337385b540d86668fbc675[m
+Merge: 333bf8e 792b220
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Wed Apr 7 06:55:10 2021 -0700
+
+    Merge pull request #175 from afiaka87/patch-3
+    
+    Clearing cache just once
+
+[33mcommit 792b22060beeef6dccbf4db6fd0d2de107158110[m
+Author: afiaka87 <3994972+afiaka87@users.noreply.github.com>
+Date:   Wed Apr 7 08:48:57 2021 -0500
+
+    Update train_dalle.py
+
+[33mcommit 7ee34a114c687a5b07536bed6a28784ff0676a61[m
+Author: afiaka87 <3994972+afiaka87@users.noreply.github.com>
+Date:   Wed Apr 7 07:38:10 2021 -0500
+
+    Clearing cache just once
+    
+    Seems to still fix the issue.
+
+[33mcommit 9221bf707e75e1d0856c429db2bb9ef4f0a9e6b5[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Wed Apr 7 09:31:44 2021 +0200
+
+    Re-add gradient clipping without DeepSpeed
+    
+    And small code cleanup
+
+[33mcommit 333bf8e684a6dff2bb7b520637cce5662ae0f450[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Tue Apr 6 22:25:46 2021 -0700
+
+    remove adamw
+
+[33mcommit 433c867d46c1cf9c08dbe87393f1021cd7357305[m[33m ([m[1;33mtag: 0.9.5[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Tue Apr 6 15:23:24 2021 -0700
+
+    fix tokenizer
+
+[33mcommit ae0c16a48a0d4589adc38d68c64e0c8ba08c92e4[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Tue Apr 6 14:14:53 2021 -0700
+
+    let deepspeed handle the gradient clipping
+
+[33mcommit da488a3722f822800e35c07cda24e396fbfe4259[m[33m ([m[1;33mtag: 0.9.4[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Sun Apr 4 12:09:55 2021 -0700
+
+    0.9.4
+
+[33mcommit 197df85687f66b49510e12752216fd4395b6d31c[m
+Merge: 4df079f 9964b59
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Sun Apr 4 12:09:42 2021 -0700
+
+    Merge pull request #168 from janEbert/deepspeed
+    
+    Revert delayed DeepSpeed requirement
+
+[33mcommit 9964b59ebd3cc4e100876d4840b1ed05a2efa6ce[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Sun Apr 4 20:43:10 2021 +0200
+
+    Improve init requirement error messages
+
+[33mcommit 73e0113d63f69dca268be0a82072a4d186462306[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Sun Apr 4 20:32:34 2021 +0200
+
+    Revert "Delay requiring DeepSpeed initialization"
+    
+    This reverts commit 8d23c5d17906319e848381230a6efde696288ccd.
+    
+    The previous code was more sensible. We now again avoid hard-to-debug
+    errors where the user does not initialize DeepSpeed when its usage is
+    desired.
+    
+    However, we do not require its initialization inside library code where
+    optional DeepSpeed support may not be desired.
+
+[33mcommit 4df079f496eeaca398bf8ff39d934118b9d6e277[m[33m ([m[1;33mtag: 0.9.3[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Sun Apr 4 06:36:12 2021 -0700
+
+    0.9.3
+
+[33mcommit 75bea8d0d7adcea3da109cd00632717352a2928e[m
+Merge: e1a9149 5b1ce1d
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Sun Apr 4 06:35:29 2021 -0700
+
+    Merge pull request #167 from janEbert/deepspeed-readme
+    
+    Describe configuring DeepSpeed
+
+[33mcommit e1a9149bcb814f7a232d8c1a4d8dbd696d23dc74[m
+Merge: 19d8778 852c5ab
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Sun Apr 4 06:35:14 2021 -0700
+
+    Merge pull request #166 from janEbert/deepspeed
+    
+    Delay requiring DeepSpeed initialization
+
+[33mcommit 5b1ce1d7293e69049d5fd18132fc256eefcd8d40[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Sun Apr 4 12:33:42 2021 +0200
+
+    Describe configuring DeepSpeed
+
+[33mcommit 852c5ab32b5ff027ea857ae85557c45ca12f782d[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Sun Apr 4 12:07:29 2021 +0200
+
+    Partly revert "make sure vae can be downloaded without deepspeed initted"
+    
+    This partly reverts commit 19d8778be848bcd12e3e7672ff4ac723883111ed.
+    The version number change is not reverted.
+
+[33mcommit 8d23c5d17906319e848381230a6efde696288ccd[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Sun Apr 4 12:03:14 2021 +0200
+
+    Delay requiring DeepSpeed initialization
+    
+    We use the boolean negativity of `using_deepspeed`'s initial value of
+    `None` to delay requiring DeepSpeed initialization. This way, we don't
+    require initialization when it's not used.
+    
+    Fix #165, can revert 19d8778be848bcd12e3e7672ff4ac723883111ed.
+
+[33mcommit 19d8778be848bcd12e3e7672ff4ac723883111ed[m[33m ([m[1;33mtag: 0.9.2[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Sat Apr 3 19:25:31 2021 -0700
+
+    make sure vae can be downloaded without deepspeed initted
+
+[33mcommit 0e5b5a806f91e651dd7fb3622e7a8e65291d2fea[m[33m ([m[1;33mtag: 0.9.1[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Sat Apr 3 14:32:49 2021 -0700
+
+    given recent padding token change, no longer needs <eos>
+
+[33mcommit 6b1cc9b07aa75c26c946853305f643cfac1ab130[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Sat Apr 3 13:32:44 2021 -0700
+
+    update readme
+
+[33mcommit a8f01a4a066a03187a96f3167f0b501f11dfadad[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Sat Apr 3 11:28:18 2021 -0700
+
+    remove masking from dalle training script, it is no longer needed
+
+[33mcommit c7d181af655be9cee94b185c954622d14d026e93[m[33m ([m[1;33mtag: 0.9.0[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Sat Apr 3 11:25:39 2021 -0700
+
+    follow the scheme used by OpenAI where there is no masking out text padding tokens, and instead, text padding tokens are given a unique padding token id, reserved on text embedding matrix
+
+[33mcommit 5077a3f55b2f53ff46a4a8686ada19d7b36e598c[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Sat Apr 3 09:19:02 2021 -0700
+
+    add current best results
+
+[33mcommit 9c1aa44afaef3bb1537659c614668665debef2df[m[33m ([m[1;33mtag: 0.8.3[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Sat Apr 3 09:12:43 2021 -0700
+
+    0.8.3
+
+[33mcommit 39ecb6964d1b7cd1820658170fea34871900e3d3[m
+Merge: 2805738 280f1b0
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Sat Apr 3 09:12:24 2021 -0700
+
+    Merge pull request #163 from janEbert/average-loss
+    
+    Print average collective instead of local loss
+
+[33mcommit 280f1b06c47129d89cfc62728a547f60191303c3[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Sat Apr 3 14:46:54 2021 +0200
+
+    Print average collective instead of local loss
+    
+    The average does not line up completely with hand-calculating it due to
+    accuracy loss during communication (may depend on the backend).
+
+[33mcommit 2805738a083df1b988c5e04aa96e373ddfc1d106[m
+Merge: f414731 34f8d3a
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Fri Apr 2 12:09:07 2021 -0700
+
+    Merge pull request #158 from afiaka87/patch-1
+    
+    Clean up VRAM to allow for running on 8xV100
+
+[33mcommit 34f8d3a75e36e8ea65d2d019cfac1abaca0ea459[m
+Merge: cb172a4 f414731
+Author: afiaka87 <3994972+afiaka87@users.noreply.github.com>
+Date:   Fri Apr 2 12:58:54 2021 -0500
+
+    Merge branch 'main' into patch-1
+
+[33mcommit f41473187203f6093be6b4e56f08c9c08fc79d9a[m[33m ([m[1;33mtag: 0.8.2[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Fri Apr 2 08:23:35 2021 -0700
+
+    remove <bos> and <eos> when decoding
+
+[33mcommit 8054f28d5045ac4d5e883ebdbccfae6e01c7a3b7[m
+Merge: 4aade13 5e46d98
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Fri Apr 2 08:04:11 2021 -0700
+
+    Merge pull request #157 from janEbert/deepspeed
+    
+    Support half-precision training in train_dalle.py
+
+[33mcommit 5e46d989e95592f6d9618583bfb5190ff7424539[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Fri Apr 2 01:56:26 2021 +0200
+
+    Support half-precision training
+
+[33mcommit cb172a4db2a87bd9cebbea26e5c462f0e0adcc76[m
+Author: afiaka87 <3994972+afiaka87@users.noreply.github.com>
+Date:   Thu Apr 1 20:29:05 2021 -0500
+
+    Clean up VRAM to allow for running on 8xV100
+    
+    
+    I found that the rank 0 gpu needs to have its cache emptied or it will OOM on more than 4 GPUs in the same instance. This fixes that to a degree - although I'm still working on making sure each of the 8 GPU's is being used effectively - as it stands they can only get to about 10GiB/16GiB vram usage with a batch size of 64 (depth 8, heads 8, attn_types=('sparse'), reversible=False). But this should help at least.
+
+[33mcommit 4aade13e04fee9a7614c157897a800f60b9a1d48[m[33m ([m[1;33mtag: 0.8.1[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Thu Apr 1 17:10:48 2021 -0700
+
+    make sure <eos> is appended
+
+[33mcommit b6ebcebea691f0ace45b27d6233deba75230e3f0[m[33m ([m[1;33mtag: 0.8.0[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Thu Apr 1 11:41:14 2021 -0700
+
+    add layerscale, from the recent training deeper vision transformers paper, as a ward against non-convergence at greater depths
+
+[33mcommit 2b416d16211aaf61d24c41a1042dbddecbeef7e8[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Thu Apr 1 09:52:27 2021 -0700
+
+    readme
+
+[33mcommit 1000e7465323a5ba49f6b0429fd153aa4e33f3ec[m
+Merge: d56e23a 049c52a
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Thu Apr 1 08:09:08 2021 -0700
+
+    Merge pull request #152 from afiaka87/truncate_captions
+    
+    Add --truncate_captions beneath token length arg.
+
+[33mcommit d56e23ae891c1a5833761119b1dcd49a0d3177b9[m
+Merge: bcce36b 797a43d
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Thu Apr 1 08:08:13 2021 -0700
+
+    Merge pull request #156 from janEbert/string-cmp
+    
+    Fix possibly undeterministic string comparison
+
+[33mcommit bcce36bf963342728d225d0cc186599879b70ea2[m
+Merge: dd581c0 92ad858
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Thu Apr 1 08:07:55 2021 -0700
+
+    Merge pull request #155 from janEbert/deepspeed
+    
+    Fix --deepspeed argument value forcing
+
+[33mcommit 797a43d0ec805a079d96fb5e4efa491a91a733b8[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Thu Apr 1 16:03:54 2021 +0200
+
+    Fix possibly undeterministic string comparison
+
+[33mcommit 92ad8581c42fa5b60e5a64554f581fea8672732a[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Thu Apr 1 15:50:04 2021 +0200
+
+    Fix --deepspeed value when not available
+
+[33mcommit 049c52aa8171b0ebb63740aae44384be308040b4[m
+Author: afiaka87 <3994972+afiaka87@users.noreply.github.com>
+Date:   Wed Mar 31 19:42:37 2021 -0500
+
+    Remove specifics of my dev environment.
+
+[33mcommit 6bac57ee1110e4aaf8296868ac3d24c1a89127b2[m
+Author: Sam Sepiol <>
+Date:   Wed Mar 31 19:40:40 2021 -0500
+
+    Add --truncate_captions beneath token length arg.
+
+[33mcommit dd581c02d7f19dac4c5c9d7088a135a5986349b2[m
+Merge: f9d230c 524ee36
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Wed Mar 31 07:52:24 2021 -0700
+
+    Merge pull request #150 from janEbert/deepspeed
+    
+    Distribute learning rate scheduler
+
+[33mcommit 524ee36668c8979c9590c11f1a5bcaa6b3640650[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Wed Mar 31 16:31:12 2021 +0200
+
+    Distribute learning rate scheduler
+
+[33mcommit f9d230cffd892479879f00ee4bf6195a22a0f733[m
+Merge: 053fa79 97faf6d
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Wed Mar 31 07:29:21 2021 -0700
+
+    Merge pull request #149 from janEbert/deepspeed
+    
+    Fix some DeepSpeed issues
+
+[33mcommit 97faf6d4d18be4c1ff818c7e5a09c3a62d403db1[m
+Merge: d22c83c 053fa79
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Wed Mar 31 07:29:16 2021 -0700
+
+    Merge branch 'main' into deepspeed
+
+[33mcommit d22c83c251077cd6f4bdbc8548a0da9f5af4c9cd[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Wed Mar 31 16:02:07 2021 +0200
+
+    Fix deadlock due to wrong rank check
+    
+    Checked global rank but blocked locally; we now check the local rank.
+
+[33mcommit 37ccb52d559f20cb9fa070431d57d91b57f3ff69[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Wed Mar 31 16:01:31 2021 +0200
+
+    Add functions for local rank handling
+
+[33mcommit dc1971c680111684f66853ed17376e4eae82c798[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Wed Mar 31 15:59:20 2021 +0200
+
+    Avoid torch.distributed import
+
+[33mcommit 36dd13abf4a4f8bb63bb66cd3396c8a5c8d23aac[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Wed Mar 31 15:23:33 2021 +0200
+
+    Guard WandB and logging from non-root worker
+
+[33mcommit 4c1345656b5e2c47c765b90e3265fd648fb1b3e1[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Wed Mar 31 15:21:42 2021 +0200
+
+    Distribute learning rate scheduler
+
+[33mcommit 1ec582ca205055c573a70ac02dd36b3513ef5b4e[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Wed Mar 31 15:19:00 2021 +0200
+
+    Fix learning rate scheduler being ignored
+
+[33mcommit ae6177d046ca5a4457d3b08a322560d2b241d847[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Wed Mar 31 15:10:59 2021 +0200
+
+    Warn about too small batch size
+
+[33mcommit 205e6a56bdff29c187a98eb05d908dfe811eded1[m
+Author: janEbert <janpublicebert@posteo.net>
+Date:   Wed Mar 31 15:03:19 2021 +0200
+
+    Add world size querying
+
+[33mcommit bf54388ff28b0b579e174f13099fd9114d699480[m
+Author: ebert1 <ja.ebert@fz-juelich.de>
+Date:   Wed Mar 31 14:32:57 2021 +0200
+
+    Prevent parallel checkpoint downloading
+
+[33mcommit 192d206d6b650714ad81528cb38a9c9a2a206717[m
+Author: ebert1 <ja.ebert@fz-juelich.de>
+Date:   Wed Mar 31 14:18:46 2021 +0200
+
+    Improve documentation
+
+[33mcommit 651a60eb1c824ef39ab818f37ec72ddf6cc895f4[m
+Author: ebert1 <ja.ebert@fz-juelich.de>
+Date:   Wed Mar 31 13:58:56 2021 +0200
+
+    Prevent parallel checkpoint writes
+    
+    Use global rank instead of local rank.
+
+[33mcommit 42bb5cf1db20385798d54c2a24616ca7f7c9977f[m
+Author: ebert1 <ja.ebert@fz-juelich.de>
+Date:   Wed Mar 31 13:57:48 2021 +0200
+
+    Do not ignore distributed data loader
+
+[33mcommit e0ef7d211f7bddb4c92172e335217b0f76a6d85f[m
+Author: ebert1 <ja.ebert@fz-juelich.de>
+Date:   Wed Mar 31 13:56:23 2021 +0200
+
+    Add DeepSpeed rank API
+
+[33mcommit 8ea69b80b399c08fe6be54779069687d80ed5658[m
+Author: ebert1 <ja.ebert@fz-juelich.de>
+Date:   Wed Mar 31 13:53:44 2021 +0200
+
+    Force deepspeed argument value when not available
+    
+    The value becomes False every time to give a reliant "API".
+
+[33mcommit 0d96c70360be4d2d5d7b1ecde3e654df1c47eaf2[m
+Author: ebert1 <ja.ebert@fz-juelich.de>
+Date:   Wed Mar 31 13:53:02 2021 +0200
+
+    Initialize DeepSpeed sooner
+
+[33mcommit 053fa7990af40a431529cedf76d1b39ae8fa2203[m[33m ([m[1;33mtag: 0.7.3[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Tue Mar 30 20:44:50 2021 -0700
+
+    0.7.3
+
+[33mcommit 4b6ca6092e5e09ed4d00642d4bd4b303e0d5c21b[m
+Merge: 554f6cb f7c47b2
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Tue Mar 30 20:44:37 2021 -0700
+
+    Merge pull request #148 from afiaka87/patch-2
+    
+    Include missing regex dependency in setup py
+
+[33mcommit f7c47b2065c95d48242c2ba580049b16cd104c5c[m
+Author: afiaka87 <3994972+afiaka87@users.noreply.github.com>
+Date:   Tue Mar 30 22:29:27 2021 -0500
+
+    Include missing regex dependency in setup py
+    
+    Nothing substantial sorry - just something that's been bugging me. Still working on some of these deepspeed issues however.
+
+[33mcommit 554f6cb6caa17fa3ee9f2024192886ccb432cbbb[m[33m ([m[1;33mtag: 0.7.2[m[33m)[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Tue Mar 30 20:03:56 2021 -0700
+
+    0.7.2
+
+[33mcommit c73f15d01cdac17b9ba7291e96fe69d22ca4234f[m
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Tue Mar 30 20:03:44 2021 -0700
+
+    remove redundant mask padding code when doing image completion
+
+[33mcommit 9028ed2d0f6c85d5985d1dc3c2a39e330249a077[m
+Merge: 83c70bf 6913f42
+Author: Phil Wang <lucidrains@gmail.com>
+Date:   Tue Mar 30 08:50:57 2021 -0700
+
+    Merge pull request #140 from janEbert/deepspeed
+    
+    Add optional DeepSpeed support

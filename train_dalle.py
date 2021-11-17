@@ -4,7 +4,7 @@ import time
 from glob import glob
 import os
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+os.environ["CUDA_VISIBLE_DEVICES"] = "2,3"
 import shutil
 
 import torch
@@ -24,7 +24,8 @@ import webdataset as wds
 from torchvision import transforms as T
 from PIL import Image
 from io import BytesIO
-
+torch.manual_seed(0)
+torch.set_num_threads(16)
 
 
 # argument parsing
@@ -452,12 +453,12 @@ if distr_backend.is_root_worker():
         dim_head=DIM_HEAD
     )
 
-    # run = wandb.init(
-    #     project=args.wandb_name,
-    #     entity=args.wandb_entity,
-    #     resume=False,
-    #     config=model_config,
-    # )
+    run = wandb.init(
+        project=args.wandb_name,
+        entity=args.wandb_entity,
+        resume=False,
+        config=model_config,
+    )
 
 # distribute
 
@@ -603,7 +604,7 @@ for epoch in range(resume_epoch, EPOCHS):
 
         if i % SAVE_EVERY_N_STEPS == 0:
             save_model(DALLE_OUTPUT_FILE_NAME, epoch=epoch)
-	
+
         if i % 100 == 0:
             if distr_backend.is_root_worker():
                 sample_text = text[:1]
