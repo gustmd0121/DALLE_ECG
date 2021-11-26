@@ -4,7 +4,7 @@ import time
 from glob import glob
 import os
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-os.environ["CUDA_VISIBLE_DEVICES"] = "2,3"
+os.environ["CUDA_VISIBLE_DEVICES"] = "3"
 import shutil
 
 import torch
@@ -18,7 +18,7 @@ from dalle_pytorch import OpenAIDiscreteVAE, VQGanVAE, DiscreteVAE, DALLE
 from dalle_pytorch import distributed_utils
 from dalle_pytorch.loader import TextImageDataset
 from dalle_pytorch.tokenizer import tokenizer, HugTokenizer, ChineseTokenizer, YttmTokenizer
-
+import ecg_plot
 # libraries needed for webdataset support
 import webdataset as wds
 from torchvision import transforms as T
@@ -71,7 +71,7 @@ parser.add_argument('--hug', dest='hug', action='store_true')
 parser.add_argument('--bpe_path', type=str,
                     help='path to your BPE json file')
 
-parser.add_argument('--dalle_output_file_name', type=str, default = "dalle",
+parser.add_argument('--dalle_output_file_name', type=str, default = "dalle_lead_normalized",
                     help='output_file_name')
 
 parser.add_argument('--fp16', action='store_true',
@@ -106,7 +106,7 @@ train_group.add_argument('--batch_size', default = 64, type = int, help = 'Batch
 
 train_group.add_argument('--ga_steps', default = 1, type = int, help = 'Number of steps to accumulate gradients across per each iteration. DeepSpeed only.')
 
-train_group.add_argument('--learning_rate', default = 3e-4, type = float, help = 'Learning rate')
+train_group.add_argument('--learning_rate', default = 4e-4, type = float, help = 'Learning rate')
 
 train_group.add_argument('--clip_grad_norm', default = 0.5, type = float, help = 'Clip gradient norm')
 
@@ -453,12 +453,12 @@ if distr_backend.is_root_worker():
         dim_head=DIM_HEAD
     )
 
-    run = wandb.init(
-        project=args.wandb_name,
-        entity=args.wandb_entity,
-        resume=False,
-        config=model_config,
-    )
+    # run = wandb.init(
+    #     project=args.wandb_name,
+    #     entity=args.wandb_entity,
+    #     resume=False,
+    #     config=model_config,
+    # )
 
 # distribute
 
@@ -614,13 +614,14 @@ for epoch in range(resume_epoch, EPOCHS):
                 if not avoid_model_calls:
                     # CUDA index errors when we don't guard this
                     image = dalle.generate_images(text[:1], filter_thres=0.9)  # topk sampling at 0.9
-
+                    ecg_plot.plot(image.squeeze(0).detach().cpu().numpy(), sample_rate=500, title="Generated ECG")
+                    ecg_plot.save_as_png("Generated_ECG")
 
                 log = {
                     **log,
                 }
                 if not avoid_model_calls:
-                    log['image'] = wandb.Image(image, caption=decoded_text)
+                    log['generated_image'] = wandb.log({"Generated ECG": wandb.Image("Generated_ECG.png", caption=decoded_text)})
 
         if i % 10 == 9 and distr_backend.is_root_worker():
             sample_per_sec = BATCH_SIZE * 10 / (time.time() - t)

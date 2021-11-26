@@ -4,7 +4,7 @@ import argparse
 from pathlib import Path
 import os
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+os.environ["CUDA_VISIBLE_DEVICES"] = "3"
 
 # torch
 
@@ -22,7 +22,7 @@ from torchvision.utils import make_grid, save_image
 # dalle classes and utils
 
 from dalle_pytorch import distributed_utils
-from dalle_pytorch.dalle_pytorch_MRF import DiscreteVAE
+from dalle_pytorch import DiscreteVAE
 import ecg_plot
 torch.manual_seed(0)
 torch.set_num_threads(16)
@@ -43,9 +43,9 @@ train_group = parser.add_argument_group('Training settings')
 
 train_group.add_argument('--epochs', type = int, default = 1000, help = 'number of epochs')
 
-train_group.add_argument('--batch_size', type = int, default = 8, help = 'batch size')
+train_group.add_argument('--batch_size', type = int, default = 256, help = 'batch size')
 
-train_group.add_argument('--learning_rate', type = float, default = 1e-3, help = 'learning rate')
+train_group.add_argument('--learning_rate', type = float, default = 2e-3, help = 'learning rate')
 
 train_group.add_argument('--lr_decay_rate', type = float, default = 0.98, help = 'learning rate decay')
 
@@ -59,7 +59,7 @@ train_group.add_argument('--num_images_save', type = int, default = 1, help = 'n
 
 model_group = parser.add_argument_group('Model settings')
 
-model_group.add_argument('--num_tokens', type = int, default = 512, help = 'number of ECG tokens')
+model_group.add_argument('--num_tokens', type = int, default = 1024, help = 'number of ECG tokens')
 
 model_group.add_argument('--num_layers', type = int, default = 4, help = 'number of layers (should be 3 or above)')
 
@@ -128,7 +128,7 @@ using_deepspeed = \
 
 ###Added code####
 
-new_original_files = torch.load("/home/hschung/ecg/ECG_Training/new_original_files_12.pt")
+new_original_files = torch.load("/home/hschung/ecg/lead_normalized_final.pt")
 
 
 class ECGDataset(torch.utils.data.Dataset):
@@ -226,11 +226,11 @@ if distr_backend.is_root_worker():
         kl_loss_weight = KL_LOSS_WEIGHT
     )
 
-    # run = wandb.init(
-    #     project = 'dalle_train_vae',
-    #     job_type = 'train_model',
-    #     config = model_config
-    # )
+    run = wandb.init(
+        project = 'dalle_train_vae',
+        job_type = 'train_model',
+        config = model_config
+    )
 
 # distribute
 
@@ -338,7 +338,7 @@ for epoch in range(EPOCHS):
                 }
 
                 wandb.save('./vae/vae3.pt')
-            save_model(f'./vae/vae3.pt')
+            torch.save(vae, './vae/vae3.pt')
 
             # temperature anneal
 
@@ -372,14 +372,14 @@ for epoch in range(EPOCHS):
     if distr_backend.is_root_worker():
         # save trained model to wandb as an artifact every epoch's end
 
-        model_artifact = wandb.Artifact('trained-vae', type = 'model', metadata = dict(model_config))
+        model_artifact = wandb.Artifact('trained-vae3', type = 'model', metadata = dict(model_config))
         model_artifact.add_file('./vae/vae3.pt')
         run.log_artifact(model_artifact)
 
 if distr_backend.is_root_worker():
     # save final vae and cleanup
 
-    save_model('./vae/vae-final3.pt')
+    torch.save(vae, './vae/vae-final3.pt')
     wandb.save('./vae/vae-final3.pt')
 
     model_artifact = wandb.Artifact('trained-vae', type = 'model', metadata = dict(model_config))

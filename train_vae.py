@@ -43,9 +43,9 @@ train_group = parser.add_argument_group('Training settings')
 
 train_group.add_argument('--epochs', type = int, default = 1000, help = 'number of epochs')
 
-train_group.add_argument('--batch_size', type = int, default = 8, help = 'batch size')
+train_group.add_argument('--batch_size', type = int, default = 128, help = 'batch size')
 
-train_group.add_argument('--learning_rate', type = float, default = 1e-3, help = 'learning rate')
+train_group.add_argument('--learning_rate', type = float, default = 2e-3, help = 'learning rate')
 
 train_group.add_argument('--lr_decay_rate', type = float, default = 0.98, help = 'learning rate decay')
 
@@ -128,12 +128,19 @@ using_deepspeed = \
 
 ###Added code####
 
-new_original_files = torch.load("/home/hschung/ecg/ECG_Training/new_original_files_12.pt")
+new_original_files = torch.load("/home/hschung/ecg/lead_normalized_final.pt")
+
+final_files = []
+for i in range(len(new_original_files)):
+    if new_original_files[i].shape[0] != 12:
+        continue
+    else:
+        final_files.append(new_original_files)
 
 
 class ECGDataset(torch.utils.data.Dataset):
     def __init__(self):
-        self.data = new_original_files
+        self.data = final_files
 
     def __getitem__(self, index):
         return self.data[index]
@@ -338,7 +345,7 @@ for epoch in range(EPOCHS):
                 }
 
                 wandb.save('./vae/vae.pt')
-            save_model(f'./vae/vae.pt')
+            torch.save(vae, './vae/vae.pt')
 
             # temperature anneal
 
@@ -379,7 +386,7 @@ for epoch in range(EPOCHS):
 if distr_backend.is_root_worker():
     # save final vae and cleanup
 
-    save_model('./vae/vae-final.pt')
+    torch.save(vae, './vae/vae-final.pt')
     wandb.save('./vae/vae-final.pt')
 
     model_artifact = wandb.Artifact('trained-vae', type = 'model', metadata = dict(model_config))

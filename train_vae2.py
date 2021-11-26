@@ -4,7 +4,7 @@ import argparse
 from pathlib import Path
 import os
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+os.environ["CUDA_VISIBLE_DEVICES"] = "3"
 
 # torch
 
@@ -43,7 +43,7 @@ train_group = parser.add_argument_group('Training settings')
 
 train_group.add_argument('--epochs', type = int, default = 1000, help = 'number of epochs')
 
-train_group.add_argument('--batch_size', type = int, default = 8, help = 'batch size')
+train_group.add_argument('--batch_size', type = int, default = 256, help = 'batch size')
 
 train_group.add_argument('--learning_rate', type = float, default = 2e-3, help = 'learning rate')
 
@@ -128,7 +128,7 @@ using_deepspeed = \
 
 ###Added code####
 
-new_original_files = torch.load("/home/hschung/ecg/ECG_Training/new_original_files_12.pt")
+new_original_files = torch.load("/home/hschung/ecg/lead_normalized_final.pt")
 
 
 class ECGDataset(torch.utils.data.Dataset):
@@ -372,7 +372,7 @@ for epoch in range(EPOCHS):
     if distr_backend.is_root_worker():
         # save trained model to wandb as an artifact every epoch's end
 
-        model_artifact = wandb.Artifact('trained-vae', type = 'model', metadata = dict(model_config))
+        model_artifact = wandb.Artifact('trained-vae2', type = 'model', metadata = dict(model_config))
         model_artifact.add_file('./vae/vae2.pt')
         run.log_artifact(model_artifact)
 
@@ -382,7 +382,7 @@ if distr_backend.is_root_worker():
     save_model('./vae/vae-final2.pt')
     wandb.save('./vae/vae-final2.pt')
 
-    model_artifact = wandb.Artifact('trained-vae', type = 'model', metadata = dict(model_config))
+    model_artifact = wandb.Artifact('trained-vae2', type = 'model', metadata = dict(model_config))
     model_artifact.add_file('./vae/vae-final2.pt')
     run.log_artifact(model_artifact)
 

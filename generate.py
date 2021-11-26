@@ -3,7 +3,9 @@ from pathlib import Path
 from tqdm import tqdm
 
 # torch
-
+import os
+os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 import torch
 
 from einops import repeat
@@ -17,6 +19,7 @@ from torchvision.utils import make_grid, save_image
 
 from dalle_pytorch import DiscreteVAE, OpenAIDiscreteVAE, VQGanVAE, DALLE
 from dalle_pytorch.tokenizer import tokenizer, HugTokenizer, YttmTokenizer, ChineseTokenizer
+import ecg_plot
 
 # argument parsing
 
@@ -34,7 +37,7 @@ parser.add_argument('--vqgan_config_path', type=str, default = None,
 parser.add_argument('--text', type = str, required = True,
                     help='your text prompt')
 
-parser.add_argument('--num_images', type = int, default = 128, required = False,
+parser.add_argument('--num_images', type = int, default = 4, required = False,
                     help='number of images')
 
 parser.add_argument('--batch_size', type = int, default = 4, required = False,
@@ -123,8 +126,11 @@ for j, text in tqdm(enumerate(texts)):
     outputs_dir.mkdir(parents = True, exist_ok = True)
 
     for i, image in tqdm(enumerate(outputs), desc = 'saving images'):
-        save_image(image, outputs_dir / f'{i}.jpg', normalize=True)
+        # save_image(image, outputs_dir / f'{i}.jpg', normalize=True)
+        ecg_plot.plot(image.squeeze(0).detach().cpu().numpy(), sample_rate=500, title="Generated ECG")
+        ecg_plot.save_as_png(f"Generated_ECG{i}")
         with open(outputs_dir / 'caption.txt', 'w') as f:
             f.write(file_name)
 
     print(f'created {args.num_images} images at "{str(outputs_dir)}"')
+
